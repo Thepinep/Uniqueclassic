@@ -35,7 +35,7 @@ class LoginActivity: AppCompatActivity() {
                         if (it.isSuccessful) {
                            val Verification = firebaseAuth.currentUser?.isEmailVerified
                             if (Verification == true){
-                                val intent = Intent(this, SearchActivity::class.java)
+                                val intent = Intent(this, MenuActivity::class.java)
                                 startActivity(intent)
                             }else{
                                 Toast.makeText(this, "Test" , Toast.LENGTH_SHORT).show()

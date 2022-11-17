@@ -4,24 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_gray"
+    android:background="@color/black"
     tools:context=".Fragments.HomeFragment">
 
 
-   <androidx.cardview.widget.CardView
-       android:layout_width="300dp"
-       android:layout_height="wrap_content"
-       app:cardCornerRadius="4dp"
-       app:cardElevation="4dp"
-       app:cardUseCompatPadding="true"
-       app:contentPadding="16dp">
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="745dp"
+        android:src="@drawable/car" />
 
+    <TextView
+        android:id="@+id/testoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:layout_marginBottom="250dp"
+        android:fontFamily="@font/poppins_extrabold"
+        android:text="Make you driving \n more exciting"/>
 
-
-   </androidx.cardview.widget.CardView>
-
-
-
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ButtonHome"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="450dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Search for your dream car"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="19dp"
+        app:backgroundTint="#E6B87C4C"
+        app:cornerRadius="30dp" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
