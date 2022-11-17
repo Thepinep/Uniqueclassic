@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "943532751011",
+    "firebase_url": "https://uniqueclassic-28735-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "uniqueclassic-28735",
+    "storage_bucket": "uniqueclassic-28735.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943532751011:android:0da179fb1a0f38d0e4a716",
+        "android_client_info": {
+          "package_name": "com.example.uniqueclassic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943532751011-8mdprvnn1bk1n30hpir9g7obtqqdreql.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO-xOKgBZ3bE1-Pm7E1U4v-p95i3w30_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943532751011-8mdprvnn1bk1n30hpir9g7obtqqdreql.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

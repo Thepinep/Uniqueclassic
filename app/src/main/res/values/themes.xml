@@ -1,0 +1,38 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Uniqueclassic"
+        parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="android:windowFullscreen">true</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/button</item>
+        <item name="colorSecondaryVariant">@color/white</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.Uniqueclassic.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Uniqueclassic.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Uniqueclassic.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.ActionBar" />
+
+
+    <style name="roundimageview" parent="" >
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+        <item name="color">@color/dark_gray3</item>
+    </style>
+
+    <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_backgroud_color</item>
+    </style>
+
+</resources>

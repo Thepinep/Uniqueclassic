@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    tools:context=".StartActivity">
+
+    <ImageView
+        android:id="@+id/ImageStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Box"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="450dp"
+        android:alpha="0.50"
+        android:background="@drawable/rounded_corner_view" />
+
+    <TextView
+        android:id="@+id/TextStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="16dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="-20dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="While you may dream of driving across the country in a stylish 1990s Porsche, your budget may have other ideas. But that doesn't mean you can't at least temporarily drive your old dream car."
+        app:layout_constraintBottom_toBottomOf="@+id/Box"
+        app:layout_constraintEnd_toEndOf="@+id/Box"
+        app:layout_constraintStart_toStartOf="@+id/Box"
+        app:layout_constraintTop_toTopOf="@+id/Box" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ButtonStart"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        app:cornerRadius="30dp"
+        app:strokeWidth="1dp"
+        app:backgroundTint="#40FFFFFF"
+        app:strokeColor="#FFFFFF"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find your dream car"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="16dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Box"
+        app:layout_constraintEnd_toEndOf="@+id/Box"
+        app:layout_constraintStart_toStartOf="@+id/Box"
+        app:layout_constraintTop_toBottomOf="@+id/TextStart"
+        android:textAllCaps="false"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

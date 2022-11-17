@@ -1,0 +1,160 @@
+<resources>
+    <string name="app_name">Uniqueclassic</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_kkkk">kkkkActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string-array name="Vehicle">
+        <item>abarth</item>
+        <item>alfa romeo</item>
+        <item>alpina</item>
+        <item>alpine</item>
+        <item>aston martin</item>
+        <item>audi</item>
+        <item> bentley</item>
+        <item>bmw</item>
+        <item>cadillac</item>
+        <item>caterham</item>
+        <item>chevrolet</item>
+        <item>chrysler</item>
+        <item>citroen</item>
+        <item>corvette</item>
+        <item>dacia daewoo</item>
+        <item>dodge</item>
+        <item>ferrari</item>
+        <item>fiat</item>
+        <item>ford</item>
+        <item>fso</item>
+        <item>honda</item>
+        <item>hyundai</item>
+        <item> jaguar</item>
+        <item>jeep</item>
+        <item>kia</item>
+        <item>lada</item>
+        <item>lamborghini</item>
+        <item>lancia</item>
+        <item>land</item>
+        <item>rover</item>
+        <item>lexus</item>
+        <item>maserati</item>
+        <item>maybach</item>
+        <item>mazda</item>
+        <item>mclaren</item>
+        <item>mercedes</item>
+        <item>mg</item>
+        <item>mini</item>
+        <item>mitsubishi</item>
+        <item>nissan</item>
+        <item>opel</item>
+        <item>peugeot</item>
+        <item>porsche</item>
+        <item>renault</item>
+        <item>rolls-royce</item>
+        <item>rover</item>
+        <item>saab</item>
+        <item>seat</item>
+        <item>skoda</item>
+        <item>smart</item>
+        <item>subaru</item>
+        <item>suzuki</item>
+        <item>toyota</item>
+        <item>volkswagen</item>
+        <item>volvo</item>
+        <item>Other</item>
+
+
+    </string-array>
+
+    <string-array name="Body">
+
+        <item>Cabriolet / Roadster</item>
+        <item>Estate Car</item>
+        <item>Saloon</item>
+        <item>Small Car</item>
+        <item>Sports Car / Coupe</item>
+        <item>SUV / Pickup Truck</item>
+        <item>Van / Minibus</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="Color">
+
+        <item>Beige</item>
+        <item>Brown</item>
+        <item>Gold</item>
+        <item>Green</item>
+        <item>Red</item>
+        <item>Silver</item>
+        <item>White</item>
+        <item>Blue</item>
+        <item>Yellow</item>
+        <item>Grey</item>
+        <item>Orange</item>
+        <item>Black</item>
+        <item>Purple</item>
+        <item>Metallic</item>
+
+
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="Country">
+
+        <item>Andorra</item>
+        <item>Austria</item>
+        <item>Belarus</item>
+        <item>Belgium</item>
+        <item>Bulgaria</item>
+        <item>Croatia</item>
+        <item>Cyprus</item>
+        <item>Czech Republic</item>
+        <item>Denmark</item>
+        <item>Estonia</item>
+        <item>Finland</item>
+        <item>France</item>
+        <item>Germany</item>
+        <item>Greece</item>
+        <item>Hungary</item>
+        <item>Iceland</item>
+        <item>Ireland</item>
+        <item>Italy</item>
+        <item>Latvia</item>
+        <item>Liechtenstein</item>
+        <item>Lithuania</item>
+        <item>Luxembourg</item>
+        <item>Macedonia</item>
+        <item>Malta</item>
+        <item> Moldova</item>
+        <item>Monaco</item>
+        <item>Montenegro</item>
+        <item>Netherlands</item>
+        <item>Norway</item>
+        <item>Poland</item>
+        <item>Portugal</item>
+        <item>Romania</item>
+        <item>Russia</item>
+        <item>San Marino</item>
+        <item>Serbia</item>
+        <item>Slovakia</item>
+        <item>Slovenia</item>
+        <item>Spain</item>
+        <item>Sweden</item>
+        <item>Switzerland</item>
+        <item>Turkey</item>
+        <item>Ukraine</item>
+        <item>United Kingdom</item>
+        <item>United Arab Emirates</item>
+        <item>Usa</item>
+
+
+    </string-array>
+
+
+</resources>

@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Uniqueclassic" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="android:windowFullscreen">true</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">#FFFFFF</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/button</item>
+        <item name="colorSecondaryVariant">@color/white</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    </style>
+    <style name="roundimageview" parent="" >
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+        <item name="color">@color/dark_gray3</item>
+    </style>
+</resources>
