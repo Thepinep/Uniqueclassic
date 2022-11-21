@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.FileUtils
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,13 +25,16 @@ import com.example.uniqueclassic.databinding.FragmentAddBinding
 import com.google.android.material.chip.Chip
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import org.apache.commons.io.FileUtils
 import org.apache.commons.io.FileUtils.copyInputStreamToFile
 import java.io.File
 
 
 class AddFragment : Fragment() {
     lateinit var btnSelectImages: Button
-    lateinit var rvImages: RecyclerView
+
 
     private lateinit var binding: FragmentAddBinding
     private lateinit var database : DatabaseReference
@@ -70,7 +72,7 @@ class AddFragment : Fragment() {
     ): View {
         binding = FragmentAddBinding.inflate(inflater,container,false)
         imageAdapter = ImageAdapter()
-        rvImages.adapter = imageAdapter
+        binding.rvImages.adapter = imageAdapter
 
         val selectImagesActivityResult =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -154,7 +156,7 @@ class AddFragment : Fragment() {
         database = FirebaseDatabase.getInstance().getReference("Directory")
 
         val etId = database.push().key!!
-        val directory = AddModel(etId, etTitle, etVehicle, etDescription, etPrice,  etVin, etYear, etPower, etCubic,etBody,etCountry,etPhone)
+        val directory = AddModel(etId, etTitle, etVehicle, etDescription, etPrice,  etVin, etYear, etPower, etCubic,etBody,etCountry,etPhone,)
 
         binding.textInputEditTitle.text?.clear()
         binding.AutoCompleteTextview.text.clear()
@@ -168,11 +170,33 @@ class AddFragment : Fragment() {
         binding.AutoCompleteTextviewCountry.text.clear()
         binding.textInputEditPhone.text?.clear()
 
+        val storageRef = Firebase.storage.reference
+        val images: List<String> = imageAdapter.selectedImagePath
+        images.map { img ->
+            Log.d("TAG_images", "savedata: ${img}")
+
+            var file = Uri.fromFile(File(img))
+            val riversRef = storageRef.child("images/${file.lastPathSegment}")
+            Log.d("TAG_images", "nameplik: ${file.lastPathSegment}")
+            val uploadTask = riversRef.putFile(file)
+
+            uploadTask.addOnFailureListener {
+                // Handle unsuccessful uploads
+            }.addOnSuccessListener { taskSnapshot ->
+                // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+                // ...
+            }
+        }
+
+
+
+
+
 
 
 
         database.child(etId).setValue(directory).addOnCompleteListener {
-            Toast.makeText(context, "data",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Save",Toast.LENGTH_SHORT).show()
 
 
 
@@ -204,7 +228,7 @@ class AddFragment : Fragment() {
     private fun createTmpFileFromUri(context: Context, uri: Uri, fileName: String, mimeType: String): File? {
         return try {
             val stream = context.contentResolver.openInputStream(uri)
-            val file = File.createTempFile(fileName, mimeType,cacheDir)
+            val file = File.createTempFile(fileName, mimeType,context.cacheDir)
             FileUtils.copyInputStreamToFile(stream, file)
             file
         } catch (e: Exception) {
@@ -213,7 +237,7 @@ class AddFragment : Fragment() {
         }
     }
 
-    private fun deleteTempFiles(file: File = cacheDir): Boolean {
+    private fun deleteTempFiles(file: File = requireContext().cacheDir): Boolean {
         if (file.isDirectory) {
             val files = file.listFiles()
             if (files != null) {
