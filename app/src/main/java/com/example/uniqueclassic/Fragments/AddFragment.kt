@@ -31,9 +31,8 @@ import java.io.File
 
 
 class AddFragment : Fragment() {
-/*
     lateinit var btnSelectImages: Button
-    lateinit var rvImages: RecyclerView*/
+    lateinit var rvImages: RecyclerView
 
     private lateinit var binding: FragmentAddBinding
     private lateinit var database : DatabaseReference
