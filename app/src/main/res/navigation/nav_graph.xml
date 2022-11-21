@@ -21,7 +21,7 @@
         android:id="@+id/followFragment"
         android:name="com.example.uniqueclassic.Fragments.FollowFragment"
         android:label="fragment_follow"
-        tools:layout="@layout/fragment_follow" />
+        tools:layout="@layout/fragment_favorite" />
     <fragment
         android:id="@+id/addFragment"
         android:name="com.example.uniqueclassic.Fragments.AddFragment"
