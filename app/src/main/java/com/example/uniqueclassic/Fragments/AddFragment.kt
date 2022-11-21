@@ -31,15 +31,14 @@ import java.io.File
 
 
 class AddFragment : Fragment() {
-/*
     lateinit var btnSelectImages: Button
-    lateinit var rvImages: RecyclerView*/
+    lateinit var rvImages: RecyclerView
 
     private lateinit var binding: FragmentAddBinding
     private lateinit var database : DatabaseReference
 
-   /* lateinit var imageAdapter: ImageAdapter
-    var selectedPaths = mutableListOf<String>()*/
+    lateinit var imageAdapter: ImageAdapter
+    var selectedPaths = mutableListOf<String>()
 
 
 
@@ -70,7 +69,6 @@ class AddFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAddBinding.inflate(inflater,container,false)
-/*
         imageAdapter = ImageAdapter()
         rvImages.adapter = imageAdapter
 
@@ -107,14 +105,14 @@ class AddFragment : Fragment() {
 
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-            intent.type = ""
+            intent.type = "*/*"
             selectImagesActivityResult.launch(intent)
         }
         try {
             deleteTempFiles()
         } catch (e: Exception) {
 
-        }*/
+        }
 
 
 
@@ -181,7 +179,7 @@ class AddFragment : Fragment() {
             }.addOnFailureListener{}
 
     }
-   /* private fun getImageFromUri(imageUri: Uri?) : File? {
+    private fun getImageFromUri(imageUri: Uri?) : File? {
         imageUri?.let { uri ->
             val mimeType = getMimeType(requireContext(), uri)
             mimeType?.let {
@@ -229,6 +227,6 @@ class AddFragment : Fragment() {
             }
         }
         return file.delete()
-    }*/
+    }
 
 }

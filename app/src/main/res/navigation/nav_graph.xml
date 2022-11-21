@@ -10,18 +10,17 @@
         android:name="com.example.uniqueclassic.Fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
-        <action android:id="@+id/action_home_to_add"
-        app:destination="@id/addFragment"
-        app:enterAnim="@anim/nav_default_enter_anim"
-        app:exitAnim="@anim/nav_default_exit_anim"
-        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-        app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/to_add"
+        app:destination="@id/addFragment" />
     </fragment>
     <fragment
-        android:id="@+id/followFragment"
-        android:name="com.example.uniqueclassic.Fragments.FollowFragment"
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.uniqueclassic.Fragments.FavoriteFragment"
         android:label="fragment_follow"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+    <action android:id="@+id/to_add"
+        app:destination="@id/addFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addFragment"
         android:name="com.example.uniqueclassic.Fragments.AddFragment"
@@ -31,11 +30,15 @@
         android:id="@+id/profilFragment"
         android:name="com.example.uniqueclassic.Fragments.ProfilFragment"
         android:label="fragment_profil"
-        tools:layout="@layout/fragment_profil" />
+        tools:layout="@layout/fragment_profil" >
+    <action android:id="@+id/to_add"
+        app:destination="@id/addFragment" />
+    </fragment>
     <fragment
         android:id="@+id/logoutFragment"
         android:name="com.example.uniqueclassic.Fragments.LogoutFragment"
         android:label="fragment_logout"
         tools:layout="@layout/fragment_logout" />
+
 
 </navigation>

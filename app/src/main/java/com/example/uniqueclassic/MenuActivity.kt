@@ -19,7 +19,7 @@ class MenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu)
         val button: View?= findViewById(R.id.ic_add_button)
         button?.setOnClickListener {
-            navController.navigate(R.id.action_home_to_add)
+            navController.navigate(R.id.to_add)
 
         }
 
