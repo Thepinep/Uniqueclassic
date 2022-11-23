@@ -11,6 +11,8 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.example.uniqueclassic.Fragments.AddFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+
+
 class MenuActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
@@ -29,6 +31,9 @@ class MenuActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
         setupWithNavController(bottomNavigationView,navController)
+
+
+
 
 
 

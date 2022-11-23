@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.uniqueclassic.Fragments.FavoriteFragment"
-        android:label="fragment_follow"
+        android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" >
     <action android:id="@+id/to_add"
         app:destination="@id/addFragment" />
@@ -26,6 +26,14 @@
         android:name="com.example.uniqueclassic.Fragments.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" />
+      <!--  <action android:id="@+id/back_home"
+            app:popUpTo="@id/homeFragment" />
+        <action android:id="@+id/back_favorite"
+            app:popUpTo="@id/favoriteFragment" />
+        <action android:id="@+id/back_profil"
+            app:popUpTo="@id/profilFragment" />
+
+    </fragment>-->
     <fragment
         android:id="@+id/profilFragment"
         android:name="com.example.uniqueclassic.Fragments.ProfilFragment"

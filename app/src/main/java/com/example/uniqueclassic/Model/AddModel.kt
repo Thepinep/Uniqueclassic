@@ -13,5 +13,5 @@ data class AddModel (
     val etBody: String? = null,
     val etCountry: String? = null,
     val etPhone: String? = null,
-    val etgalery : List<String>
+//    val etgalery : List<String>
         )

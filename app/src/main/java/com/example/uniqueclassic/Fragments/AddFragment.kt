@@ -123,19 +123,16 @@ class AddFragment : Fragment() {
             savedata()
         }
 
-        /*binding.chipGroupChoice.setOnCheckedChangeListener { chipGroup, checkedId ->
-            val titleOrNull = chipGroup.findViewById<Chip>(checkedId)?.test
+        binding.chipGroupChoice.setOnCheckedChangeListener { chipGroup, checkedId ->
+            val titleOrNull = chipGroup.findViewById<Chip>(checkedId)?.text
             Toast.makeText(chipGroup. context , titleOrNull ?: "No Choice" , Toast. LENGTH_LONG ).show()
-        }*/
+        }
+        binding.chipGroupChoice2.setOnCheckedChangeListener { chipGroup, checkedId ->
+            val titleOrNull = chipGroup.findViewById<Chip>(checkedId)?.text
+            Toast.makeText(chipGroup. context , titleOrNull ?: "No Choice" , Toast. LENGTH_LONG ).show()
+        }
 
 
-
-        /*binding.chipGroupChoice.setOnCheckedChangeListener{ group, checkedId ->
-            val chip: Chip? = group.findViewById(checkedId)
-            chip?.let {
-            }
-
-        }*/
         return binding.root
     }
     private  fun savedata(){
@@ -156,7 +153,7 @@ class AddFragment : Fragment() {
         database = FirebaseDatabase.getInstance().getReference("Directory")
 
         val etId = database.push().key!!
-        val directory = AddModel(etId, etTitle, etVehicle, etDescription, etPrice,  etVin, etYear, etPower, etCubic,etBody,etCountry,etPhone,)
+        val directory = AddModel(etId, etTitle, etVehicle, etDescription, etPrice,  etVin, etYear, etPower, etCubic,etBody,etCountry,etPhone)
 
         binding.textInputEditTitle.text?.clear()
         binding.AutoCompleteTextview.text.clear()
