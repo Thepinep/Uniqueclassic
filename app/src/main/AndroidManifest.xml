@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Uniqueclassic"
         tools:targetApi="31">
         <activity
+            android:name=".DetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".FiltersActivity"
             android:exported="false" />
         <activity
@@ -23,7 +26,9 @@
             android:exported="false" />
         <activity
             android:name=".MenuActivity"
-            android:exported="false" />
+            android:exported="false"
+       />/     android:windowSoftInputMode="stateVisible|adjustNothing"
+            />
         <activity
             android:name=".PdfActivity"
             android:exported="false" />

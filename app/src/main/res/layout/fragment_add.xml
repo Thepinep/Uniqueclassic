@@ -53,6 +53,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
+        android:fillViewport="true"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -163,7 +164,11 @@
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
                     android:layout_weight="1"
-                    android:inputType="none" />
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:inputType="none|textNoSuggestions"
+                    android:cursorVisible="false"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -534,7 +539,11 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:layout_weight="1"
-                android:inputType="none" />
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="none|textNoSuggestions"
+                android:cursorVisible="false"
+                />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -618,7 +627,11 @@
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
                     android:layout_weight="1"
-                    android:inputType="none" />
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:inputType="none|textNoSuggestions"
+                    android:cursorVisible="false"
+                     />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -740,7 +753,10 @@
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
                     android:layout_weight="1"
-                    android:inputType="none" />
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:inputType="none|textNoSuggestions"
+                    android:cursorVisible="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -833,7 +849,7 @@
                 android:id="@+id/Box"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
-                android:layout_height="110dp"
+                android:layout_height="150dp"
                 android:background="@color/dark_gray3" />
 
 

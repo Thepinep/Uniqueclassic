@@ -38,7 +38,7 @@ class LoginActivity: AppCompatActivity() {
                                 val intent = Intent(this, MenuActivity::class.java)
                                 startActivity(intent)
                             }else{
-                                Toast.makeText(this, "Test" , Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "Succeed" , Toast.LENGTH_SHORT).show()
                             }
 
                         } else {
