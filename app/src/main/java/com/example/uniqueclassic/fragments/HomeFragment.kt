@@ -1,4 +1,4 @@
-package com.example.uniqueclassic.Fragments
+package com.example.uniqueclassic.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.uniqueclassic.FiltersActivity
-import com.example.uniqueclassic.LoginActivity
 
 import com.example.uniqueclassic.databinding.FragmentHomeBinding
 

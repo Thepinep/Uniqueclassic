@@ -7,23 +7,23 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.uniqueclassic.Fragments.HomeFragment"
+        android:name="com.example.uniqueclassic.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home">
-        <action android:id="@+id/to_add"
-        app:destination="@id/addFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_home"/>
+      <!-- &lt;!&ndash; <action android:id="@+id/to_add"
+        app:destination="@id/addFragment" />&ndash;&gt;
+    </fragment>-->
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.uniqueclassic.Fragments.FavoriteFragment"
+        android:name="com.example.uniqueclassic.fragments.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" >
-    <action android:id="@+id/to_add"
-        app:destination="@id/addFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_favorite" />
+<!--    <action android:id="@+id/to_add"-->
+<!--        app:destination="@id/addFragment" />-->
+<!--    </fragment>-->
     <fragment
         android:id="@+id/addFragment"
-        android:name="com.example.uniqueclassic.Fragments.AddFragment"
+        android:name="com.example.uniqueclassic.fragments.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" />
       <!--  <action android:id="@+id/back_home"
@@ -36,15 +36,15 @@
     </fragment>-->
     <fragment
         android:id="@+id/profilFragment"
-        android:name="com.example.uniqueclassic.Fragments.ProfilFragment"
+        android:name="com.example.uniqueclassic.fragments.ProfilFragment"
         android:label="fragment_profil"
-        tools:layout="@layout/fragment_profil" >
-    <action android:id="@+id/to_add"
+        tools:layout="@layout/fragment_profil" />
+    <!--<action android:id="@+id/to_add"
         app:destination="@id/addFragment" />
-    </fragment>
+    </fragment>-->
     <fragment
         android:id="@+id/logoutFragment"
-        android:name="com.example.uniqueclassic.Fragments.LogoutFragment"
+        android:name="com.example.uniqueclassic.fragments.LogoutFragment"
         android:label="fragment_logout"
         tools:layout="@layout/fragment_logout" />
 

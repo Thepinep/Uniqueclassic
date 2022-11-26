@@ -1,4 +1,4 @@
-package com.example.uniqueclassic.Fragments
+package com.example.uniqueclassic.fragments
 
 
 import android.app.Activity
@@ -17,18 +17,17 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.recyclerview.widget.RecyclerView
 import com.example.uniqueclassic.ImageAdapter
 import com.example.uniqueclassic.Model.AddModel
 import com.example.uniqueclassic.R
 import com.example.uniqueclassic.databinding.FragmentAddBinding
 import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import org.apache.commons.io.FileUtils
-import org.apache.commons.io.FileUtils.copyInputStreamToFile
 import java.io.File
 
 
@@ -123,17 +122,17 @@ class AddFragment : Fragment() {
             savedata()
         }
 
-        binding.chipGroupChoice.setOnCheckedChangeListener { chipGroup, checkedId ->
-            val titleOrNull = chipGroup.findViewById<Chip>(checkedId)?.text
-            Toast.makeText(chipGroup. context , titleOrNull ?: "No Choice" , Toast. LENGTH_LONG ).show()
-        }
-        binding.chipGroupChoice2.setOnCheckedChangeListener { chipGroup, checkedId ->
-            val titleOrNull = chipGroup.findViewById<Chip>(checkedId)?.text
-            Toast.makeText(chipGroup. context , titleOrNull ?: "No Choice" , Toast. LENGTH_LONG ).show()
-        }
 
 
         return binding.root
+    }
+    private fun ChipGroup.Carprv() = when(checkedChipId) {
+        R.id.chip1 -> "Private"
+        R.id.chip2 -> "Company"
+        -1 ->""
+
+        else -> throw IllegalStateException("chip id nieznane $checkedChipId")
+
     }
     private  fun savedata(){
 
@@ -149,13 +148,29 @@ class AddFragment : Fragment() {
         val etCountry = binding.AutoCompleteTextviewCountry.text.toString()
         val etPhone = binding.textInputEditPhone.text.toString()
 
+        val etPvrorDir =binding.chipGroupChoice.Carprv()
+
 
         database = FirebaseDatabase.getInstance().getReference("Directory")
 
         val etId = database.push().key!!
-        val directory = AddModel(etId, etTitle, etVehicle, etDescription, etPrice,  etVin, etYear, etPower, etCubic,etBody,etCountry,etPhone)
+        val directory = AddModel(
+            etId = etId,
+            etTitle = etTitle,
+            etVehicle = etVehicle,
+            etDescription = etDescription,
+            etPvrorDir = etPvrorDir,
+            etPrice = etPrice,
+            etVin = etVin,
+            etYear = etYear,
+            etPower = etPower,
+            etCubic = etCubic,
+            etBody = etBody,
+            etCountry = etCountry,
+            etPhone = etPhone
+        )
 
-        binding.textInputEditTitle.text?.clear()
+       /* binding.textInputEditTitle.text?.clear()
         binding.AutoCompleteTextview.text.clear()
         binding.textInputEditDescription.text?.clear()
         binding.textInputEditPrice.text?.clear()
@@ -165,7 +180,7 @@ class AddFragment : Fragment() {
         binding.textInputEditCubic.text?.clear()
         binding.AutoCompleteTextviewBody.text?.clear()
         binding.AutoCompleteTextviewCountry.text.clear()
-        binding.textInputEditPhone.text?.clear()
+        binding.textInputEditPhone.text?.clear()*/
 
         val storageRef = Firebase.storage.reference
         val images: List<String> = imageAdapter.selectedImagePath
@@ -194,6 +209,8 @@ class AddFragment : Fragment() {
 
         database.child(etId).setValue(directory).addOnCompleteListener {
             Toast.makeText(context, "Save",Toast.LENGTH_SHORT).show()
+            requireActivity().finish()
+
 
 
 

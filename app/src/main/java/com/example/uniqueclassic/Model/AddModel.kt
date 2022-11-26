@@ -5,6 +5,7 @@ data class AddModel (
     var etTitle: String? = null,
     var etVehicle: String? = null,
     var etDescription: String? = null,
+    var etPvrorDir: String? = null,
     var etPrice: String? = null,
     var etVin: String? = null,
     val etYear: String? = null,
