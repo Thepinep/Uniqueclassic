@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="@tools:sample/full_names"
+        android:maxLength="17"
         android:textSize="5dp"
         android:layout_marginLeft="5dp"
         android:textStyle="bold"

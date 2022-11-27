@@ -29,6 +29,15 @@
                 android:layout_margin="10dp"
                 android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_width="34dp"
+                    android:clickable="true"
+                    android:id="@+id/ButtonClose"
+                    android:layout_height="34dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_close" />
+
                 <TextView
                     android:id="@+id/textView_bolt"
                     android:layout_width="wrap_content"
@@ -97,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="3"
+                app:spanCount="4"
                 tools:itemCount="12"
                 tools:listitem="@layout/layout_image_adapter"/>
             <TextView
@@ -776,7 +785,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/chipGroupChoice5">
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip12"
+                    android:id="@+id/chip11"
                     style="@style/CustomChipStyle"
                     android:clickable="true"
                     android:layout_width="match_parent"
@@ -785,7 +794,7 @@
                     android:textColor="@color/white"
                     android:text="On the right"/>
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip13"
+                    android:id="@+id/chip12"
                     style="@style/CustomChipStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -830,6 +839,40 @@
                     android:fontFamily="@font/poppins_medium" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/textView_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:text="Username"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutName"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:boxBackgroundColor="@color/dark_gray2"
+                app:hintTextColor="@color/white"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditName"
+                    android:layout_width="match_parent"
+                    android:maxLength="9"
+                    android:paddingTop="16dp"
+                    android:inputType = "text"
+                    android:paddingBottom="16dp"
+                    android:lines="1"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/ButtonAdd"
                 style="@style/Widget.Material3.Button.ElevatedButton"
@@ -849,7 +892,7 @@
                 android:id="@+id/Box"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
-                android:layout_height="150dp"
+                android:layout_height="30dp"
                 android:background="@color/dark_gray3" />
 
 

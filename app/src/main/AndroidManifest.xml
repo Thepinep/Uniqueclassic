@@ -30,8 +30,7 @@
         <activity
             android:name=".MenuActivity"
             android:exported="false"
-       />/     android:windowSoftInputMode="stateVisible|adjustNothing"
-            />
+       />
         <activity
             android:name=".PdfActivity"
             android:exported="false" />

@@ -21,7 +21,6 @@ import com.example.uniqueclassic.ImageAdapter
 import com.example.uniqueclassic.Model.AddModel
 import com.example.uniqueclassic.R
 import com.example.uniqueclassic.databinding.FragmentAddBinding
-import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -121,17 +120,55 @@ class AddFragment : Fragment() {
         binding.ButtonAdd.setOnClickListener {
             savedata()
         }
+        binding.ButtonClose.setOnClickListener {
+            requireActivity().finish()
+
+        }
 
 
 
         return binding.root
     }
-    private fun ChipGroup.Carprv() = when(checkedChipId) {
+    private fun ChipGroup.prvcom() = when(checkedChipId) {
         R.id.chip1 -> "Private"
         R.id.chip2 -> "Company"
         -1 ->""
 
-        else -> throw IllegalStateException("chip id nieznane $checkedChipId")
+        else -> throw IllegalStateException("chip null $checkedChipId")
+
+    }
+    private fun ChipGroup.fuel() = when(checkedChipId) {
+        R.id.chip3 -> "Petrol"
+        R.id.chip4 -> "Diesel"
+        R.id.chip5 -> "Lpg"
+        -1 ->""
+
+        else -> throw IllegalStateException("chip null $checkedChipId")
+
+    }
+    private fun ChipGroup.condition() = when(checkedChipId) {
+        R.id.chip6 -> "Undamaged"
+        R.id.chip7 -> "Damaged"
+        -1 ->""
+
+        else -> throw IllegalStateException("chip null $checkedChipId")
+
+    }
+    private fun ChipGroup.transmission() = when(checkedChipId) {
+        R.id.chip8 -> "Automatic transmission"
+        R.id.chip9 -> "Semi-automatic"
+        R.id.chip10 -> "Manual gearbox"
+        -1 ->""
+
+        else -> throw IllegalStateException("chip null $checkedChipId")
+
+    }
+    private fun ChipGroup.wheel() = when(checkedChipId) {
+        R.id.chip11 -> "On the right"
+        R.id.chip12 -> "On the left"
+        -1 ->""
+
+        else -> throw IllegalStateException("chip null $checkedChipId")
 
     }
     private  fun savedata(){
@@ -147,40 +184,39 @@ class AddFragment : Fragment() {
         val etBody = binding.AutoCompleteTextviewBody.text.toString()
         val etCountry = binding.AutoCompleteTextviewCountry.text.toString()
         val etPhone = binding.textInputEditPhone.text.toString()
+        val etUsername = binding.textInputEditName.text.toString()
 
-        val etPvrorDir =binding.chipGroupChoice.Carprv()
-
+        val etPrvorCom =binding.chipGroupChoice.prvcom()
+        val etFuel = binding.chipGroupChoice2.fuel()
+        val etCondition = binding.chipGroupChoice3.condition()
+        val etTransmission = binding.chipGroupChoice4.transmission()
+        val etWheel = binding.chipGroupChoice5.wheel()
 
         database = FirebaseDatabase.getInstance().getReference("Directory")
 
         val etId = database.push().key!!
         val directory = AddModel(
-            etId = etId,
-            etTitle = etTitle,
-            etVehicle = etVehicle,
-            etDescription = etDescription,
-            etPvrorDir = etPvrorDir,
-            etPrice = etPrice,
-            etVin = etVin,
-            etYear = etYear,
-            etPower = etPower,
-            etCubic = etCubic,
-            etBody = etBody,
-            etCountry = etCountry,
-            etPhone = etPhone
+            etId,
+            etTitle,
+            etVehicle,
+            etDescription,
+            etPrvorCom,
+            etPrice,
+            etVin,
+            etYear,
+            etPower,
+            etCubic,
+            etFuel,
+            etBody,
+            etCondition,
+            etTransmission,
+            etCountry,
+            etWheel,
+            etPhone,
+            etUsername,
+
         )
 
-       /* binding.textInputEditTitle.text?.clear()
-        binding.AutoCompleteTextview.text.clear()
-        binding.textInputEditDescription.text?.clear()
-        binding.textInputEditPrice.text?.clear()
-        binding.textInputEditVin.text?.clear()
-        binding.textInputEditYears.text?.clear()
-        binding.textInputEditPower.text?.clear()
-        binding.textInputEditCubic.text?.clear()
-        binding.AutoCompleteTextviewBody.text?.clear()
-        binding.AutoCompleteTextviewCountry.text.clear()
-        binding.textInputEditPhone.text?.clear()*/
 
         val storageRef = Firebase.storage.reference
         val images: List<String> = imageAdapter.selectedImagePath
@@ -199,22 +235,17 @@ class AddFragment : Fragment() {
                 // ...
             }
         }
+        if(etTitle.isNotEmpty() && etVehicle.isNotEmpty() && etDescription.isNotEmpty() && etPrice.isNotEmpty() && etVin.isNotEmpty() && etYear.isNotEmpty() && etPower.isNotEmpty() && etCubic.isNotEmpty() && etBody.isNotEmpty() &&
+            etCountry.isNotEmpty() && etPhone.isNotEmpty()) {
+            database.child(etId).setValue(directory).addOnCompleteListener {
+                Toast.makeText(context, "You have successfully added the announcement", Toast.LENGTH_SHORT).show()
+                requireActivity().finish()
 
+            }.addOnFailureListener {
+            }
+        }else{
+            Toast.makeText(context, "Complete all the fields", Toast.LENGTH_SHORT).show()}
 
-
-
-
-
-
-
-        database.child(etId).setValue(directory).addOnCompleteListener {
-            Toast.makeText(context, "Save",Toast.LENGTH_SHORT).show()
-            requireActivity().finish()
-
-
-
-
-            }.addOnFailureListener{}
 
     }
     private fun getImageFromUri(imageUri: Uri?) : File? {

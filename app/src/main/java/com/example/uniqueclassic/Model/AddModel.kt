@@ -5,14 +5,19 @@ data class AddModel (
     var etTitle: String? = null,
     var etVehicle: String? = null,
     var etDescription: String? = null,
-    var etPvrorDir: String? = null,
+    var etPrvorCom: String? = null,
     var etPrice: String? = null,
     var etVin: String? = null,
     val etYear: String? = null,
     val etPower: String? = null,
     val etCubic: String? = null,
+    val etFuel: String? = null,
     val etBody: String? = null,
+    val etCondition: String? = null,
+    val etTransmission: String? = null,
     val etCountry: String? = null,
+    val etWheel: String? = null,
     val etPhone: String? = null,
+    val etUsername: String? = null
 //    val etgalery : List<String>
         )
