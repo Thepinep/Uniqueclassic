@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Pdf.TermsActivity">
-
+    tools:context=".Pdf.PolicyActivity">
 
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfView"
@@ -13,4 +12,5 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:background="@color/dark_gray"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

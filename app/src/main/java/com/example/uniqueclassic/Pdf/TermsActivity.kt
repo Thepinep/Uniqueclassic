@@ -1,10 +1,11 @@
-package com.example.uniqueclassic
+package com.example.uniqueclassic.Pdf
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.uniqueclassic.R
 import com.github.barteksc.pdfviewer.PDFView
 
-class PdfActivity : AppCompatActivity() {
+class TermsActivity : AppCompatActivity() {
 
     lateinit var pdfView: PDFView
 

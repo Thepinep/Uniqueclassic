@@ -27,11 +27,7 @@ class LogoutFragment : Fragment() {
 
         binding.ButtonLogout.setOnClickListener {
             user.signOut()
-            startActivity(
-                Intent(
-                    requireContext(), LoginActivity::class.java
-                )
-            )
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
             activity?.finish()
         }
 
