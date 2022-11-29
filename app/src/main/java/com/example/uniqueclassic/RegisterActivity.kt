@@ -23,7 +23,8 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
-        val uid = firebaseAuth.currentUser?.uid
+  //      val uid = firebaseAuth.currentUser?.uid
+        val uid  = firebaseAuth.uid
         databaseReference = FirebaseDatabase.getInstance().getReference("User")
 
 
@@ -50,7 +51,6 @@ class RegisterActivity : AppCompatActivity() {
                                 databaseReference.child(uid).setValue(user).addOnCompleteListener {  }
                             }*/
                         if (it.isSuccessful) {
-
 
                             val intent = Intent(this, LoginActivity::class.java)
                             startActivity(intent)

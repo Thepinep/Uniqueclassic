@@ -74,13 +74,13 @@
 
     <string-array name="Body">
 
-        <item>Cabriolet / Roadster</item>
+        <item>Cabriolet</item>
         <item>Estate Car</item>
         <item>Saloon</item>
         <item>Small Car</item>
-        <item>Sports Car / Coupe</item>
-        <item>SUV / Pickup Truck</item>
-        <item>Van / Minibus</item>
+        <item>Coupe</item>
+        <item>SUV </item>
+        <item>Van </item>
         <item>Other</item>
     </string-array>
 

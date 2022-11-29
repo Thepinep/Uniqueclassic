@@ -40,11 +40,11 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
                     android:layout_alignParentRight="true"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_close" />
+                    android:src="@drawable/ic_favorite" />
 
             </RelativeLayout>
             <LinearLayout
@@ -53,8 +53,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_marginLeft="5dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="5dp"
@@ -68,7 +68,6 @@
                     android:fontFamily="@font/poppins_medium"
                     android:layout_marginRight="2dp"
                     android:text="100000"
-
                     android:textColor="#FFFFFF"
                     android:textSize="10dp" />
 
@@ -84,16 +83,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="•"
                     android:textColor="#FFFFFF"
                     android:textSize="10dp" />
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="5dp"
                     android:src="@drawable/ic_event" />
@@ -104,7 +103,6 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
                     android:text="2002"
 
                     android:textColor="#FFFFFF"
@@ -115,13 +113,14 @@
                     android:fontFamily="@font/poppins_medium"
                     android:layout_gravity="center"
                     android:text="•"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
                     android:textColor="#FFFFFF"
                     android:textSize="10dp" />
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_marginRight="5dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_fuel" />
@@ -142,15 +141,15 @@
                     android:fontFamily="@font/poppins_medium"
                     android:layout_gravity="center"
                     android:text="•"
-                    android:layout_marginRight="5dp"
                     android:textColor="#FFFFFF"
                     android:textSize="10dp" />
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="3dp"
                     android:src="@drawable/ic_car" />
 
                 <TextView
@@ -169,6 +168,7 @@
                 android:layout_width="match_parent"
                 android:scaleType="centerCrop"
                 android:layout_height="150dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/m5"/>
 
@@ -176,7 +176,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:weightSum="100"
                 android:orientation="horizontal">
+
 
                 <TextView
                     android:id="@+id/zl_text"
@@ -184,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
                     android:layout_marginLeft="10dp"
-                    android:text="210"
+                    android:text="2100"
                     android:layout_gravity="center"
                     android:textColor="@color/white"
                     android:textSize="20dp"
@@ -206,6 +208,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:layout_gravity="left"
                     android:text="per day"
+                    android:layout_weight="95"
                     android:layout_marginStart="5dp"
                     android:textColor="@color/white"
                     android:textSize="10sp" />
@@ -213,11 +216,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0"
                     android:fontFamily="@font/poppins_medium"
                     android:padding="5dp"
                     android:text="Book Now"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginStart="130dp"
                     android:textColor="@color/white"
                     android:background="@drawable/button_rounded_shape"
                     android:textSize="15sp" />

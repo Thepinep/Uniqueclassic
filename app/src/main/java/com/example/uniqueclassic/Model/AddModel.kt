@@ -13,6 +13,8 @@ data class AddModel (
     val etCubic: String? = null,
     val etFuel: String? = null,
     val etBody: String? = null,
+    val etKilometre: String? = null,
+    val etColor: String? = null,
     val etCondition: String? = null,
     val etTransmission: String? = null,
     val etCountry: String? = null,

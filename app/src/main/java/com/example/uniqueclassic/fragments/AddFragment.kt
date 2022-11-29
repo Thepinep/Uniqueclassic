@@ -183,9 +183,10 @@ class AddFragment : Fragment() {
         val etCubic = binding.textInputEditCubic.text.toString()
         val etBody = binding.AutoCompleteTextviewBody.text.toString()
         val etCountry = binding.AutoCompleteTextviewCountry.text.toString()
+        val etKilometre = binding.textInputEditKm.text.toString()
+        val etColor = binding.AutoCompleteTextviewColor.text.toString()
         val etPhone = binding.textInputEditPhone.text.toString()
         val etUsername = binding.textInputEditName.text.toString()
-
         val etPrvorCom =binding.chipGroupChoice.prvcom()
         val etFuel = binding.chipGroupChoice2.fuel()
         val etCondition = binding.chipGroupChoice3.condition()
@@ -208,6 +209,8 @@ class AddFragment : Fragment() {
             etCubic,
             etFuel,
             etBody,
+            etKilometre,
+            etColor,
             etCondition,
             etTransmission,
             etCountry,
@@ -235,8 +238,8 @@ class AddFragment : Fragment() {
                 // ...
             }
         }
-        if(etTitle.isNotEmpty() && etVehicle.isNotEmpty() && etDescription.isNotEmpty() && etPrice.isNotEmpty() && etVin.isNotEmpty() && etYear.isNotEmpty() && etPower.isNotEmpty() && etCubic.isNotEmpty() && etBody.isNotEmpty() &&
-            etCountry.isNotEmpty() && etPhone.isNotEmpty()) {
+        if(etTitle.isNotEmpty() && etVehicle.isNotEmpty() && etDescription.isNotEmpty() && etPrice.isNotEmpty() && etYear.isNotEmpty() && etPower.isNotEmpty() && etCubic.isNotEmpty() && etBody.isNotEmpty() &&
+            etCountry.isNotEmpty() && etKilometre.isNotEmpty() && etColor.isNotEmpty() && etPhone.isNotEmpty()) {
             database.child(etId).setValue(directory).addOnCompleteListener {
                 Toast.makeText(context, "You have successfully added the announcement", Toast.LENGTH_SHORT).show()
                 requireActivity().finish()

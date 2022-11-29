@@ -37,14 +37,14 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Find Your"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Find your dream"
                     android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
+                    android:textSize="20sp" />
 
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:src="@drawable/ic_tune" />
@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Dream Car"
+                    android:text="classic car"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
 
@@ -73,7 +73,7 @@
                         android:drawableLeft="@drawable/ic_search_gray_24dp"
                         android:drawablePadding="8dp"
                         android:fontFamily="@font/poppins_light"
-                        android:hint="e.g. individual ?"
+                        android:hint="e.g. E39 "
                         android:padding="12dp"
                         android:textColor="@color/white"
                         android:textColorHint="@color/white" />
@@ -120,7 +120,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 tools:listitem="@layout/search_adapter_item"
-                android:id="@+id/recent_recycler"
+                android:id="@+id/CarRecycler"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp" />
