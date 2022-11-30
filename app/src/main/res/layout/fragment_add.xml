@@ -299,7 +299,7 @@
                     android:fontFamily="@font/poppins_medium"
                     android:textColor="@color/white"
                     android:layout_marginEnd="20dp"
-                    android:text="zł" />
+                    android:text="pln" />
             </RelativeLayout>
 
             <TextView
@@ -737,7 +737,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_light"
-                android:text="Vehicle make"
+                android:text="Home country"
                 android:textColor="@color/white"
                 android:layout_marginTop="10dp"
                 android:textSize="15dp" />
@@ -805,6 +805,14 @@
 
             </com.google.android.material.chip.ChipGroup>
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/dark_gray2"
+                />
+
+
             <TextView
                 android:id="@+id/textView_phone"
                 android:layout_width="wrap_content"
@@ -863,6 +871,40 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputEditName"
+                    android:layout_width="match_parent"
+                    android:maxLength="9"
+                    android:paddingTop="16dp"
+                    android:inputType = "text"
+                    android:paddingBottom="16dp"
+                    android:lines="1"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView_Location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:text="Location"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutLocation"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:boxBackgroundColor="@color/dark_gray2"
+                app:hintTextColor="@color/white"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditLocation"
                     android:layout_width="match_parent"
                     android:maxLength="9"
                     android:paddingTop="16dp"

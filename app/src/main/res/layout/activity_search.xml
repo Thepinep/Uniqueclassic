@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Find your dream"
+                    android:text="Find Your"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
 
@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="classic car"
+                    android:text="Dream Classic Car"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
 
@@ -68,7 +68,9 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:background="@drawable/gray_rounded_shape"
                         android:drawableLeft="@drawable/ic_search_gray_24dp"
                         android:drawablePadding="8dp"

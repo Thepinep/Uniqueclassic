@@ -187,11 +187,13 @@ class AddFragment : Fragment() {
         val etColor = binding.AutoCompleteTextviewColor.text.toString()
         val etPhone = binding.textInputEditPhone.text.toString()
         val etUsername = binding.textInputEditName.text.toString()
+        val etLocation = binding.textInputEditLocation.text.toString()
         val etPrvorCom =binding.chipGroupChoice.prvcom()
         val etFuel = binding.chipGroupChoice2.fuel()
         val etCondition = binding.chipGroupChoice3.condition()
         val etTransmission = binding.chipGroupChoice4.transmission()
         val etWheel = binding.chipGroupChoice5.wheel()
+
 
         database = FirebaseDatabase.getInstance().getReference("Directory")
 
@@ -217,6 +219,7 @@ class AddFragment : Fragment() {
             etWheel,
             etPhone,
             etUsername,
+            etLocation,
 
         )
 
@@ -239,7 +242,7 @@ class AddFragment : Fragment() {
             }
         }
         if(etTitle.isNotEmpty() && etVehicle.isNotEmpty() && etDescription.isNotEmpty() && etPrice.isNotEmpty() && etYear.isNotEmpty() && etPower.isNotEmpty() && etCubic.isNotEmpty() && etBody.isNotEmpty() &&
-            etCountry.isNotEmpty() && etKilometre.isNotEmpty() && etColor.isNotEmpty() && etPhone.isNotEmpty()) {
+            etCountry.isNotEmpty() && etKilometre.isNotEmpty() && etColor.isNotEmpty() && etPhone.isNotEmpty() && etUsername.isNotEmpty() && etLocation.isNotEmpty()) {
             database.child(etId).setValue(directory).addOnCompleteListener {
                 Toast.makeText(context, "You have successfully added the announcement", Toast.LENGTH_SHORT).show()
                 requireActivity().finish()

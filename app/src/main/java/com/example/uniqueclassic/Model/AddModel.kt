@@ -20,6 +20,7 @@ data class AddModel (
     val etCountry: String? = null,
     val etWheel: String? = null,
     val etPhone: String? = null,
-    val etUsername: String? = null
+    val etUsername: String? = null,
+    val etLocation: String? = null
 //    val etgalery : List<String>
         )

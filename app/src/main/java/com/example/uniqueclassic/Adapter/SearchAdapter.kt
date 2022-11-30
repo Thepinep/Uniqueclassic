@@ -10,8 +10,17 @@ import com.example.uniqueclassic.R
 
 class SearchAdapter (private val CarRecycler : ArrayList<AddModel>) : RecyclerView.Adapter<SearchAdapter.MyViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    private lateinit var mListener: onItemClickListener
 
+    interface onItemClickListener{
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(clickListener: onItemClickListener){
+        mListener = clickListener
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate( R.layout.search_adapter_item, parent, false)
         return MyViewHolder(itemView)
     }
@@ -19,8 +28,8 @@ class SearchAdapter (private val CarRecycler : ArrayList<AddModel>) : RecyclerVi
 
         val currentitem = CarRecycler[position]
 
-        holder.Title.text = currentitem.etTitle
-        holder.kilometer.text = currentitem.etKilometre
+        holder.title.text = currentitem.etTitle
+        holder.power.text = currentitem.etPower
         holder.year.text = currentitem.etYear
         holder.fuel.text = currentitem.etFuel
         holder.body.text = currentitem.etBody
@@ -36,8 +45,8 @@ class SearchAdapter (private val CarRecycler : ArrayList<AddModel>) : RecyclerVi
 
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
-        val Title : TextView = itemView.findViewById(R.id.title_text)
-        val kilometer : TextView = itemView.findViewById(R.id.kilometre_text)
+        val title : TextView = itemView.findViewById(R.id.title_text)
+        val power : TextView = itemView.findViewById(R.id.power_text)
         val year : TextView = itemView.findViewById(R.id.year_text)
         val fuel : TextView = itemView.findViewById(R.id.fuel_text)
         val body : TextView = itemView.findViewById(R.id.body_text)
