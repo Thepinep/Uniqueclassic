@@ -22,7 +22,7 @@ class SearchAdapter (private val CarRecycler : ArrayList<AddModel>) : RecyclerVi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate( R.layout.search_adapter_item, parent, false)
-        return MyViewHolder(itemView)
+        return MyViewHolder(itemView,mListener)
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
@@ -43,7 +43,7 @@ class SearchAdapter (private val CarRecycler : ArrayList<AddModel>) : RecyclerVi
     }
 
 
-    class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    class MyViewHolder(itemView : View, clickListener: onItemClickListener) : RecyclerView.ViewHolder(itemView){
 
         val title : TextView = itemView.findViewById(R.id.title_text)
         val power : TextView = itemView.findViewById(R.id.power_text)
@@ -52,6 +52,12 @@ class SearchAdapter (private val CarRecycler : ArrayList<AddModel>) : RecyclerVi
         val body : TextView = itemView.findViewById(R.id.body_text)
         val zl : TextView = itemView.findViewById(R.id.zl_text)
 
+        init{
+            itemView.setOnClickListener {
+                clickListener.onItemClick(adapterPosition)
 
+
+            }
+        }
     }
 }

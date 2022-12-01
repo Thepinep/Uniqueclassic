@@ -34,10 +34,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="260dp"
                             android:clickable="true"
-                            android:src="@drawable/m5"
                             android:scaleType="centerCrop"
-                            />
-
+                            android:src="@drawable/m5" />
                         <ImageView
                             android:id="@+id/ButtonBack"
                             android:layout_width="30dp"
@@ -49,8 +47,27 @@
                             android:layout_marginBottom="5dp"
                             android:clickable="true"
                             android:src="@drawable/ic_black" />
-
                     </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="vertical">
+
+                    <Gallery
+                        android:id="@+id/languagesGallery"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:animationDuration="2000"
+                        android:padding="10dp"
+                        android:spacing="5dp"
+                        android:unselectedAlpha="50" />
+
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -106,7 +123,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/zl_text"
+                            android:id="@+id/pln_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
@@ -180,7 +197,7 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
                         <TextView
-                            android:id="@+id/power_text"
+                            android:id="@+id/powerdeatal_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
@@ -277,7 +294,7 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
                                 <TextView
-                                    android:id="@+id/fuel_text"
+                                    android:id="@+id/fueldetail_text"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/poppins_medium"
@@ -387,6 +404,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="100"
+                        android:layout_marginTop="5dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -398,7 +416,7 @@
                             android:textColor="@color/white"
                             android:textSize="12dp" />
                         <TextView
-                            android:id="@+id/year_text"
+                            android:id="@+id/yearproduction_text"
                             android:layout_width="match_parent"
                             android:layout_weight="50"
                             android:layout_height="wrap_content"
@@ -411,6 +429,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="100"
+                        android:layout_marginTop="5dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -432,12 +451,152 @@
                             android:textSize="12dp" />
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_weight="50"
+                            android:layout_weight="49"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
                             android:text="cm3"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="Body type"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                        <TextView
+                            android:id="@+id/body_text"
+                            android:layout_width="match_parent"
+                            android:layout_weight="50"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Sedan"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="Kilometre"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                        <TextView
+                            android:id="@+id/kilometre_text"
+                            android:layout_width="match_parent"
+                            android:layout_weight="85"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="100000"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_weight="65"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="km"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="Body color"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                        <TextView
+                            android:id="@+id/color_text"
+                            android:layout_width="match_parent"
+                            android:layout_weight="50"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Metallic"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="Home country"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/home_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Germany"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="Steering wheel"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                        <TextView
+                            android:id="@+id/wheel_text"
+                            android:layout_width="match_parent"
+                            android:layout_weight="50"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="On the right"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
                     </LinearLayout>
 
                     <androidx.cardview.widget.CardView
@@ -448,9 +607,103 @@
                         app:cardBackgroundColor="@color/dark_gray2">
                     </androidx.cardview.widget.CardView>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_user" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="5dp"
+                            android:gravity="bottom"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Seller"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="Username"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                        <TextView
+                            android:id="@+id/user_text"
+                            android:layout_width="match_parent"
+                            android:layout_weight="50"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Adam"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
+                        app:cardBackgroundColor="@color/dark_gray2">
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_user" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="5dp"
+                            android:gravity="bottom"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Vehicle Description"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/description_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:fontFamily="@font/poppins_light"
+                        android:textColor="@color/white"
+                        android:textSize="12dp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
+                        app:cardBackgroundColor="@color/dark_gray2">
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
-
                 </LinearLayout>
             </ScrollView>
 </LinearLayout>

@@ -201,17 +201,19 @@
                 app:boxBackgroundColor="@color/dark_gray2"
                 app:hintTextColor="@color/white"
                 app:boxCornerRadiusTopEnd="5dp"
-
                 app:boxCornerRadiusTopStart="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputEditDescription"
                     android:layout_width="match_parent"
+                    android:inputType="textMultiLine"
                     android:maxLength="900"
+                    android:gravity="top"
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
-                    android:inputType="text"
+                    android:lines="4"
                     android:layout_height="wrap_content"
+                    android:scrollbars="vertical"
                     android:fontFamily="@font/poppins_medium" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -936,6 +938,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_height="30dp"
                 android:background="@color/dark_gray3" />
+
+
+
 
 
 

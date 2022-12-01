@@ -215,6 +215,8 @@
                     android:textSize="10sp" />
 
                 <TextView
+                    android:clickable="true"
+                    android:id="@+id/book_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
