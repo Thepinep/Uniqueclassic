@@ -1,8 +1,11 @@
 package com.example.uniqueclassic
 
+import android.app.PendingIntent.getActivity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uniqueclassic.Adapter.SearchAdapter
@@ -15,9 +18,16 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var Recyclerview : RecyclerView
     private lateinit var CarRecycler : ArrayList<AddModel>
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+
+        val button = findViewById(R.id.back1) as ImageView
+        button.setOnClickListener {
+            val intent = Intent(this, FiltersActivity::class.java)
+            startActivity(intent)
+        }
 
         Recyclerview = findViewById(R.id.CarRecycler)
         Recyclerview.layoutManager = LinearLayoutManager(this)
