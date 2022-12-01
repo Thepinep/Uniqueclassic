@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/purple_200"
     tools:context=".fragments.FavoriteFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:id="@+id/textView"
+    <androidx.recyclerview.widget.RecyclerView
+        tools:listitem="@layout/search_adapter_item"
+        android:id="@+id/CarRecycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Działa kek" />
+        android:layout_marginTop="8dp" />
 
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

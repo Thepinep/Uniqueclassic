@@ -1,60 +1,92 @@
 package com.example.uniqueclassic.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.uniqueclassic.Adapter.SearchAdapter
+import com.example.uniqueclassic.DetailActivity
+import com.example.uniqueclassic.Model.AddModel
 import com.example.uniqueclassic.R
+import com.google.firebase.database.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FavoriteFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FavoriteFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var dbref : DatabaseReference
+    private lateinit var Recyclerview : RecyclerView
+    private lateinit var CarRecycler : ArrayList<AddModel>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false)
-    }
+        var rootView = inflater.inflate(R.layout.fragment_favorite, container, false)
+        Recyclerview = rootView.findViewById(R.id.CarRecycler)
+        Recyclerview.layoutManager = LinearLayoutManager(requireContext())
+        Recyclerview.setHasFixedSize(true)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FollowFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FavoriteFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        CarRecycler = arrayListOf<AddModel>()
+        getCarData()
+
+        return rootView
+
+
+    }
+    private fun getCarData() {
+
+        dbref = FirebaseDatabase.getInstance().getReference("Directory")
+
+        dbref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if (snapshot.exists()) {
+
+                    for (userSnapshot in snapshot.children) {
+
+                        val car = userSnapshot.getValue(AddModel::class.java)
+                        CarRecycler.add(car!!)
+                    }
+
+                    val mAdapter = SearchAdapter(CarRecycler)
+                    Recyclerview.adapter = mAdapter
+
+                    mAdapter.setOnItemClickListener(object : SearchAdapter.onItemClickListener{
+                        override fun onItemClick(position: Int) {
+                            val intent = Intent(this@FavoriteFragment.context, DetailActivity::class.java)
+
+
+                            intent.putExtra("etTitle", CarRecycler[position].etTitle)
+                            intent.putExtra("etLocation", CarRecycler[position].etLocation)
+                            intent.putExtra("etPrice", CarRecycler[position].etPrice)
+                            intent.putExtra("etPower", CarRecycler[position].etPower)
+                            intent.putExtra("etTransmission", CarRecycler[position].etTransmission)
+                            intent.putExtra("etFuel", CarRecycler[position].etFuel)
+                            intent.putExtra("etSeller", CarRecycler[position].etSeller)
+                            intent.putExtra("etVin", CarRecycler[position].etVin)
+                            intent.putExtra("etYear", CarRecycler[position].etYear)
+                            intent.putExtra("etCubic", CarRecycler[position].etCubic)
+                            intent.putExtra("etBody", CarRecycler[position].etBody)
+                            intent.putExtra("etKilometre", CarRecycler[position].etKilometre)
+                            intent.putExtra("etColor", CarRecycler[position].etColor)
+                            intent.putExtra("etCountry", CarRecycler[position].etCountry)
+                            intent.putExtra("etWheel", CarRecycler[position].etWheel)
+                            intent.putExtra("etUsername", CarRecycler[position].etUsername)
+                            intent.putExtra("etDescription", CarRecycler[position].etDescription)
+
+                            startActivity(intent)
+                        }
+                    })
                 }
             }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 }
