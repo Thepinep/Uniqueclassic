@@ -25,6 +25,7 @@ import com.google.android.material.chip.ChipGroup
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import org.apache.commons.io.FileUtils
 import java.io.File
@@ -40,7 +41,7 @@ class AddFragment : Fragment() {
     lateinit var imageAdapter: ImageAdapter
     var selectedPaths = mutableListOf<String>()
 
-
+    val succesfulImages: MutableList<String> = mutableListOf()
 
 
     override fun onResume() {
@@ -171,7 +172,7 @@ class AddFragment : Fragment() {
         else -> throw IllegalStateException("chip null $checkedChipId")
 
     }
-    private  fun savedata(){
+    private  fun savedata() {
 
         val etTitle = binding.textInputEditTitle.text.toString()
         val etVehicle = binding.AutoCompleteTextview.text.toString()
@@ -188,7 +189,7 @@ class AddFragment : Fragment() {
         val etPhone = binding.textInputEditPhone.text.toString()
         val etUsername = binding.textInputEditName.text.toString()
         val etLocation = binding.textInputEditLocation.text.toString()
-        val etPrvorCom =binding.chipGroupChoice.prvcom()
+        val etPrvorCom = binding.chipGroupChoice.prvcom()
         val etFuel = binding.chipGroupChoice2.fuel()
         val etCondition = binding.chipGroupChoice3.condition()
         val etTransmission = binding.chipGroupChoice4.transmission()
@@ -221,38 +222,51 @@ class AddFragment : Fragment() {
             etUsername,
             etLocation,
 
-        )
+            )
 
 
         val storageRef = Firebase.storage.reference
         val images: List<String> = imageAdapter.selectedImagePath
-        images.map { img ->
-            Log.d("TAG_images", "savedata: ${img}")
+        sendSingleImg(storageRef, images[0], images.drop(1))
 
-            var file = Uri.fromFile(File(img))
-            val riversRef = storageRef.child("images/${file.lastPathSegment}")
-            Log.d("TAG_images", "nameplik: ${file.lastPathSegment}")
-            val uploadTask = riversRef.putFile(file)
 
-            uploadTask.addOnFailureListener {
-                // Handle unsuccessful uploads
-            }.addOnSuccessListener { taskSnapshot ->
-                // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-                // ...
-            }
-        }
-        if(etTitle.isNotEmpty() && etVehicle.isNotEmpty() && etDescription.isNotEmpty() && etPrice.isNotEmpty() && etYear.isNotEmpty() && etPower.isNotEmpty() && etCubic.isNotEmpty() && etBody.isNotEmpty() &&
-            etCountry.isNotEmpty() && etKilometre.isNotEmpty() && etColor.isNotEmpty() && etPhone.isNotEmpty() && etUsername.isNotEmpty() && etLocation.isNotEmpty()) {
+
+    }
+    private fun imageafter(){
+        if (etTitle.isNotEmpty() && etVehicle.isNotEmpty() && etDescription.isNotEmpty() && etPrice.isNotEmpty() && etYear.isNotEmpty() && etPower.isNotEmpty() && etCubic.isNotEmpty() && etBody.isNotEmpty() &&
+            etCountry.isNotEmpty() && etKilometre.isNotEmpty() && etColor.isNotEmpty() && etPhone.isNotEmpty() && etUsername.isNotEmpty() && etLocation.isNotEmpty()
+        ) {
             database.child(etId).setValue(directory).addOnCompleteListener {
-                Toast.makeText(context, "You have successfully added the announcement", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    "You have successfully added the announcement",
+                    Toast.LENGTH_SHORT
+                ).show()
                 requireActivity().finish()
 
             }.addOnFailureListener {
             }
-        }else{
-            Toast.makeText(context, "Complete all the fields", Toast.LENGTH_SHORT).show()}
+        } else {
+            Toast.makeText(context, "Complete all the fields", Toast.LENGTH_SHORT).show()
+        }
+    }
+    private fun sendSingleImg(storageRef: StorageReference, img: String, images: List<String>) {
+        Log.d("TAG_images", "savedata: ${img}")
+        var file = Uri.fromFile(File(img))
+        val riversRef = storageRef.child("images/${file.lastPathSegment}")
+        Log.d("TAG_images", "nameplik: ${file.lastPathSegment}")
+        val uploadTask = riversRef.putFile(file)
 
-
+        uploadTask.addOnFailureListener {
+            Log.e("TAG_images", "img $img failed", it)
+        }.addOnSuccessListener { taskSnapshot ->
+            succesfulImages.add(img)
+            if(images.isEmpty()){
+                Log.d("TAG_images", "upload finished")
+            } else {
+                sendSingleImg(storageRef, images[0], images.drop(1))
+            }
+        }
     }
     private fun getImageFromUri(imageUri: Uri?) : File? {
         imageUri?.let { uri ->
