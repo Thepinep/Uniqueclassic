@@ -62,6 +62,10 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'
     //Circular Image Library
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //Gallery
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+    implementation 'com.firebaseui:firebase-ui-storage:7.2.0'
 
 
     implementation 'com.google.android.material:material:1.7.0'

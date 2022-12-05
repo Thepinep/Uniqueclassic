@@ -1,16 +1,16 @@
 package com.example.uniqueclassic
 
-import android.app.PendingIntent.getActivity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uniqueclassic.Adapter.SearchAdapter
 import com.example.uniqueclassic.Model.AddModel
 import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class SearchActivity : AppCompatActivity() {
 
@@ -53,8 +53,11 @@ class SearchActivity : AppCompatActivity() {
                         CarRecycler.add(car!!)
                     }
 
-                    val mAdapter = SearchAdapter(CarRecycler)
+                    val storageReference = Firebase.storage.reference
+
+                    val mAdapter = SearchAdapter(CarRecycler , storageReference)
                     Recyclerview.adapter = mAdapter
+
 
                     mAdapter.setOnItemClickListener(object :SearchAdapter.onItemClickListener{
                         override fun onItemClick(position: Int) {

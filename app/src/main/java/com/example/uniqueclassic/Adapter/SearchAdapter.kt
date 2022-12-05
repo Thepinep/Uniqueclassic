@@ -1,14 +1,27 @@
 package com.example.uniqueclassic.Adapter
 
+
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.uniqueclassic.Model.AddModel
 import com.example.uniqueclassic.R
+import com.google.firebase.storage.StorageReference
 
-class SearchAdapter (private val CarRecycler : ArrayList<AddModel>) : RecyclerView.Adapter<SearchAdapter.MyViewHolder>() {
+
+class SearchAdapter(
+    private val CarRecycler: ArrayList<AddModel>,
+     private val storageReference: StorageReference?
+) : RecyclerView.Adapter<SearchAdapter.MyViewHolder>() {
+
+    companion object {
+        const val IMAGES_PATH = "images/"
+    }
 
     private lateinit var mListener: onItemClickListener
 
@@ -34,7 +47,16 @@ class SearchAdapter (private val CarRecycler : ArrayList<AddModel>) : RecyclerVi
         holder.fuel.text = currentitem.etFuel
         holder.body.text = currentitem.etBody
         holder.zl.text = currentitem.etPrice
+        holder.image.loadImg(holder.itemView.context, currentitem.etgalery[0])
 
+    }
+
+    private  fun ImageView.loadImg(context: Context,imgName :String ){
+        storageReference?.let {
+            Glide.with(context)
+                .load(it.child(("$IMAGES_PATH$imgName")))
+                .into(this)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -51,10 +73,13 @@ class SearchAdapter (private val CarRecycler : ArrayList<AddModel>) : RecyclerVi
         val fuel : TextView = itemView.findViewById(R.id.fuel_text)
         val body : TextView = itemView.findViewById(R.id.body_text)
         val zl : TextView = itemView.findViewById(R.id.zl_text)
+        val image : ImageView = itemView.findViewById(R.id.image_car)
+
 
         init{
             itemView.setOnClickListener {
                 clickListener.onItemClick(adapterPosition)
+
 
 
             }

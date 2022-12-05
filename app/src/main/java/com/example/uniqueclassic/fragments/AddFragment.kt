@@ -17,6 +17,8 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.uniqueclassic.Adapter.SearchAdapter
+import com.example.uniqueclassic.Adapter.SearchAdapter.Companion.IMAGES_PATH
 import com.example.uniqueclassic.ImageAdapter
 import com.example.uniqueclassic.Model.AddModel
 import com.example.uniqueclassic.R
@@ -255,15 +257,16 @@ class AddFragment : Fragment() {
 
     private fun sendSingleImg(etId: String, directory: AddModel, storageRef: StorageReference, img: String, images: List<String>) {
         Log.d("TAG_images", "savedata: ${img}")
-        var file = Uri.fromFile(File(img))
-        val riversRef = storageRef.child("images/${file.lastPathSegment}")
-        Log.d("TAG_images", "nameplik: ${file.lastPathSegment}")
-        val uploadTask = riversRef.putFile(file)
+        val file = File(img)
+        val uri = Uri.fromFile(file)
+        val riversRef = storageRef.child("$IMAGES_PATH${uri.lastPathSegment}")
+        Log.d("TAG_images", "nameplik: ${uri.lastPathSegment}")
+        val uploadTask = riversRef.putFile(uri)
 
         uploadTask.addOnFailureListener {
             Log.e("TAG_images", "img $img failed", it)
         }.addOnSuccessListener { taskSnapshot ->
-            succesfulImages.add(img)
+            succesfulImages.add(file.name)
             if(images.isEmpty()){
                 Log.d("TAG_images", "upload finished")
                 imageafter(succesfulImages, etId, directory)
