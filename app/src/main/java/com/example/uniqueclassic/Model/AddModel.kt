@@ -21,6 +21,6 @@ data class AddModel (
     val etWheel: String? = null,
     val etPhone: String? = null,
     val etUsername: String? = null,
-    val etLocation: String? = null
- //   val etgalery : List<String>
+    val etLocation: String? = null,
+    val etgalery : List<String> = emptyList()
         )

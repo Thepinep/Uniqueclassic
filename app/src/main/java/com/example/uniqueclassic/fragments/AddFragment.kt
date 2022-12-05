@@ -198,6 +198,7 @@ class AddFragment : Fragment() {
 
         database = FirebaseDatabase.getInstance().getReference("Directory")
 
+
         val etId = database.push().key!!
         val directory = AddModel(
             etId,
@@ -224,19 +225,23 @@ class AddFragment : Fragment() {
 
             )
 
-
-        val storageRef = Firebase.storage.reference
-        val images: List<String> = imageAdapter.selectedImagePath
-        sendSingleImg(storageRef, images[0], images.drop(1))
-
-
-
-    }
-    private fun imageafter(){
         if (etTitle.isNotEmpty() && etVehicle.isNotEmpty() && etDescription.isNotEmpty() && etPrice.isNotEmpty() && etYear.isNotEmpty() && etPower.isNotEmpty() && etCubic.isNotEmpty() && etBody.isNotEmpty() &&
             etCountry.isNotEmpty() && etKilometre.isNotEmpty() && etColor.isNotEmpty() && etPhone.isNotEmpty() && etUsername.isNotEmpty() && etLocation.isNotEmpty()
         ) {
-            database.child(etId).setValue(directory).addOnCompleteListener {
+            val storageRef = Firebase.storage.reference
+            val images: List<String> = imageAdapter.selectedImagePath
+            sendSingleImg(etId, directory, storageRef, images[0], images.drop(1))
+        } else {
+            Toast.makeText(context, "Complete all the fields", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+    private fun imageafter(succesfulImages: MutableList<String>, etId: String, directory: AddModel) {
+
+        val newDir = directory.copy(etgalery = succesfulImages)
+
+        database.child(etId).setValue(newDir)
+            .addOnCompleteListener {
                 Toast.makeText(
                     context,
                     "You have successfully added the announcement",
@@ -244,13 +249,11 @@ class AddFragment : Fragment() {
                 ).show()
                 requireActivity().finish()
 
-            }.addOnFailureListener {
             }
-        } else {
-            Toast.makeText(context, "Complete all the fields", Toast.LENGTH_SHORT).show()
-        }
+            .addOnFailureListener {}
     }
-    private fun sendSingleImg(storageRef: StorageReference, img: String, images: List<String>) {
+
+    private fun sendSingleImg(etId: String, directory: AddModel, storageRef: StorageReference, img: String, images: List<String>) {
         Log.d("TAG_images", "savedata: ${img}")
         var file = Uri.fromFile(File(img))
         val riversRef = storageRef.child("images/${file.lastPathSegment}")
@@ -263,8 +266,9 @@ class AddFragment : Fragment() {
             succesfulImages.add(img)
             if(images.isEmpty()){
                 Log.d("TAG_images", "upload finished")
+                imageafter(succesfulImages, etId, directory)
             } else {
-                sendSingleImg(storageRef, images[0], images.drop(1))
+                sendSingleImg(etId, directory, storageRef, images[0], images.drop(1))
             }
         }
     }

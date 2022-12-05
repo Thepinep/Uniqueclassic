@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.uniqueclassic.Model.User
 import com.example.uniqueclassic.Pdf.TermsActivity
 import com.example.uniqueclassic.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -23,8 +24,8 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
-  //      val uid = firebaseAuth.currentUser?.uid
-        val uid  = firebaseAuth.uid
+        val uid = firebaseAuth.currentUser?.uid
+    //    val uid  = firebaseAuth.uid
         databaseReference = FirebaseDatabase.getInstance().getReference("User")
 
 
@@ -46,12 +47,11 @@ class RegisterActivity : AppCompatActivity() {
                 if (pass == confirmpass) {
 
                     firebaseAuth.createUserWithEmailAndPassword(email, pass ).addOnCompleteListener {
-                       /* *//*val user = User(username,email)
+                        if (it.isSuccessful) {
+                            val user = User(username,email)
                             if( uid != null){
                                 databaseReference.child(uid).setValue(user).addOnCompleteListener {  }
-                            }*/
-                        if (it.isSuccessful) {
-
+                            }
                             val intent = Intent(this, LoginActivity::class.java)
                             startActivity(intent)
                             firebaseAuth.currentUser?.sendEmailVerification()?.addOnSuccessListener {

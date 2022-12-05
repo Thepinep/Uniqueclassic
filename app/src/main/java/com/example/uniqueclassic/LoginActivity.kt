@@ -37,12 +37,14 @@ class LoginActivity: AppCompatActivity() {
                             if (Verification == true){
                                 val intent = Intent(this, MenuActivity::class.java)
                                 startActivity(intent)
-                            }else{
+       //                         Toast.makeText(this, "Succeed ${firebaseAuth.currentUser?.uid}" , Toast.LENGTH_SHORT).show()
                                 Toast.makeText(this, "Succeed" , Toast.LENGTH_SHORT).show()
+                            }else{
+                                Toast.makeText(this, "Please Verify your Email!" , Toast.LENGTH_SHORT).show()
                             }
 
                         } else {
-                            Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Password incorrect", Toast.LENGTH_SHORT).show()
                         }
                     }
             }else{
