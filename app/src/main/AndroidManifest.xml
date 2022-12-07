@@ -15,7 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Uniqueclassic"
         tools:targetApi="31">
-
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".DetailActivity"
             android:exported="false" />

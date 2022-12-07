@@ -18,6 +18,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -38,9 +39,8 @@ class RegisterActivity : AppCompatActivity() {
             val email= binding.textInputEditEmailAddress.text.toString()
             val pass = binding.textInputEditPassword.text.toString()
             val confirmpass = binding.textInputEditConfirmPassword.text.toString()
-
-
-
+            val phone = ""
+            val location = ""
 
             if(username.isNotEmpty() && email.isNotEmpty() && pass.isNotEmpty() && confirmpass.isNotEmpty()) {
                 if (pass == confirmpass) {
@@ -48,7 +48,7 @@ class RegisterActivity : AppCompatActivity() {
                     firebaseAuth.createUserWithEmailAndPassword(email, pass ).addOnCompleteListener {
                         if (it.isSuccessful) {
                             val uid = firebaseAuth.currentUser?.uid
-                            val user = User(username,email)
+                            val user = User(username,email, phone, location)
                             if( uid != null){
                                 databaseReference.child(uid).setValue(user).addOnCompleteListener {  }
                             }

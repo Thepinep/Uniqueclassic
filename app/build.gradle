@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -38,6 +39,7 @@ android {
 }
 
 
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.6.0'
@@ -64,7 +66,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     //Gallery
     implementation 'com.github.bumptech.glide:glide:4.14.2'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+    kapt 'com.github.bumptech.glide:compiler:4.14.2'
     implementation 'com.firebaseui:firebase-ui-storage:7.2.0'
 
 
