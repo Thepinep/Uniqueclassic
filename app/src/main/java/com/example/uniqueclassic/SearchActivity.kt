@@ -81,6 +81,9 @@ class SearchActivity : AppCompatActivity() {
                             intent.putExtra("etWheel", CarRecycler[position].etWheel)
                             intent.putExtra("etUsername", CarRecycler[position].etUsername)
                             intent.putExtra("etDescription", CarRecycler[position].etDescription)
+                            intent.putExtra("etgalery", (CarRecycler[position].etgalery).toTypedArray())
+
+
 
                             startActivity(intent)
                         }

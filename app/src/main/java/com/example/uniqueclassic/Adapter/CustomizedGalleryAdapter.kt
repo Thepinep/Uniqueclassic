@@ -1,12 +1,19 @@
 package com.example.uniqueclassic.Adapter
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Gallery
 import android.widget.ImageView
+import com.example.uniqueclassic.R
+import com.google.firebase.storage.StorageReference
 
-class CustomizedGalleryAdapter(private val context: Context, private val images: IntArray) : BaseAdapter() {
+class CustomizedGalleryAdapter(
+    private val context: Context,
+    private  val storageReference: StorageReference,
+    private val images: List<String>
+) : BaseAdapter() {
 
     // returns the number of images, in our example it is 10
     override fun getCount(): Int {
@@ -14,8 +21,8 @@ class CustomizedGalleryAdapter(private val context: Context, private val images:
     }
 
     // returns the Item  of an item, i.e. for our example we can get the image
-    override fun getItem(position: Int): Any {
-        return position
+    override fun getItem(position: Int): String {
+        return images[position]
     }
 
     // returns the ID of an item
@@ -24,16 +31,21 @@ class CustomizedGalleryAdapter(private val context: Context, private val images:
     }
 
     // returns an ImageView view
-    override fun getView(position: Int, convertView: View, parent: ViewGroup): View {
-        // position argument will indicate the location of image
-        // create a ImageView programmatically
-        val imageView = ImageView(context)
 
-        // set image in ImageView
-        imageView.setImageResource(images[position])
-
-        // set ImageView param
-        imageView.layoutParams = Gallery.LayoutParams(200, 200)
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val imageView = if (convertView == null) {
+            val inflater = LayoutInflater.from(context)
+            val newItem = inflater.inflate(R.layout.car_detail_item, parent, false)
+            newItem.findViewById<ImageView>(R.id.car_detail_image)
+                .loadImg(context, storageReference ,images[position])
+            newItem
+        }
+        else {
+            convertView.findViewById<ImageView>(R.id.car_detail_image)
+                .loadImg(context, storageReference ,images[position])
+            convertView
+        }
         return imageView
     }
+
 }

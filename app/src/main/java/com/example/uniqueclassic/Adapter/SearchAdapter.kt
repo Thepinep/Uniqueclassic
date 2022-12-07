@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.uniqueclassic.Model.AddModel
 import com.example.uniqueclassic.R
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.storage.StorageReference
 
 
 class SearchAdapter(
     private val CarRecycler: ArrayList<AddModel>,
-     private val storageReference: StorageReference?
+    private val storageReference: StorageReference?
 ) : RecyclerView.Adapter<SearchAdapter.MyViewHolder>() {
 
     companion object {
@@ -47,17 +48,10 @@ class SearchAdapter(
         holder.fuel.text = currentitem.etFuel
         holder.body.text = currentitem.etBody
         holder.zl.text = currentitem.etPrice
-        holder.image.loadImg(holder.itemView.context, currentitem.etgalery[0])
+        holder.image.loadImg(holder.itemView.context,storageReference, currentitem.etgalery[0])
 
     }
 
-    private  fun ImageView.loadImg(context: Context,imgName :String ){
-        storageReference?.let {
-            Glide.with(context)
-                .load(it.child(("$IMAGES_PATH$imgName")))
-                .into(this)
-        }
-    }
 
     override fun getItemCount(): Int {
 
@@ -84,5 +78,12 @@ class SearchAdapter(
 
             }
         }
+    }
+}
+fun ImageView.loadImg(context: Context, storageReference: StorageReference?, imgName :String ){
+    storageReference?.let {
+        Glide.with(context)
+            .load(it.child(("${SearchAdapter.IMAGES_PATH}$imgName")))
+            .into(this)
     }
 }

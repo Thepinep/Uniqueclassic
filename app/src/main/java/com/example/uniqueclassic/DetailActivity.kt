@@ -1,13 +1,18 @@
 package com.example.uniqueclassic
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.Gallery
 
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.uniqueclassic.Adapter.CustomizedGalleryAdapter
+import com.example.uniqueclassic.Adapter.loadImg
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class DetailActivity : AppCompatActivity() {
 
@@ -39,24 +44,34 @@ class DetailActivity : AppCompatActivity() {
     // To show the selected language, we need this
     // array of images, here taken 10 different kind of
     // most popular programming languages
-    private var images = intArrayOf(
-        R.drawable.search_image,
-        R.drawable.add_button
-    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+        val buttonClick = findViewById<ImageView>(R.id.ButtonBack1)
+        buttonClick.setOnClickListener {
+            finish()
+        }
+
         initView()
         setValuesToViews()
+
+
+
 
         simpleGallery = findViewById<View>(R.id.languagesGallery) as Gallery
 
         // get the reference of ImageView
-        selectedImageView = findViewById<View>(R.id.m5.jpg) as ImageView
+        selectedImageView = findViewById<View>(R.id.Imageoff) as ImageView
+
+
+        val storageReference = Firebase.storage.reference
+        val list_gallery =intent.getStringArrayExtra("etgalery")?.asList() ?: emptyList()
+
+
 
         // initialize the adapter
-        customGalleryAdapter = CustomizedGalleryAdapter(applicationContext, images)
+        customGalleryAdapter = CustomizedGalleryAdapter(applicationContext,storageReference, list_gallery)
 
         // set the adapter for gallery
         simpleGallery.adapter = customGalleryAdapter
@@ -65,7 +80,7 @@ class DetailActivity : AppCompatActivity() {
         simpleGallery.setOnItemClickListener { parent, view, position, id ->
             // Whichever image is clicked, that is set in the  selectedImageView
             // position will indicate the location of image
-            selectedImageView.setImageResource(images[position])
+            selectedImageView.loadImg(this, storageReference ,list_gallery[position])
         }
     }
 
