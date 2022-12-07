@@ -64,8 +64,7 @@ class ProfileActivity : AppCompatActivity() {
     }
     private fun back() {
         binding.ButtonClose.setOnClickListener {
-           /* val intent = Intent(getContext(), ProfilFragment::class.java)
-            startActivity(intent)*/
+           finish()
 
 
         }

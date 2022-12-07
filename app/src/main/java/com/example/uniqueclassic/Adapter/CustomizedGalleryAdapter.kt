@@ -3,9 +3,9 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Gallery
 import android.widget.ImageView
 
-/*
 class CustomizedGalleryAdapter(private val context: Context, private val images: IntArray) : BaseAdapter() {
 
     // returns the number of images, in our example it is 10
@@ -36,4 +36,4 @@ class CustomizedGalleryAdapter(private val context: Context, private val images:
         imageView.layoutParams = Gallery.LayoutParams(200, 200)
         return imageView
     }
-}*/
+}
