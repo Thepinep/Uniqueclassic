@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.uniqueclassic.AdsActivity
 import com.example.uniqueclassic.LoginActivity
 import com.example.uniqueclassic.Model.User
 import com.example.uniqueclassic.Pdf.PolicyActivity
@@ -58,6 +59,9 @@ class ProfilFragment : Fragment() {
 
         binding.EditButton.setOnClickListener {
             startActivity(Intent(requireContext(), ProfileActivity::class.java))
+        }
+        binding.AdsButton.setOnClickListener {
+            startActivity(Intent(requireContext(), AdsActivity::class.java))
         }
         binding.DeleteButton.setOnClickListener {
             addContactDialog.show()

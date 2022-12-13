@@ -24,6 +24,7 @@ import com.example.uniqueclassic.Model.AddModel
 import com.example.uniqueclassic.R
 import com.example.uniqueclassic.databinding.FragmentAddBinding
 import com.google.android.material.chip.ChipGroup
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
@@ -36,9 +37,10 @@ import java.io.File
 class AddFragment : Fragment() {
     lateinit var btnSelectImages: Button
 
-
     private lateinit var binding: FragmentAddBinding
     private lateinit var database : DatabaseReference
+    private lateinit var firebaseAuth: FirebaseAuth
+
 
     lateinit var imageAdapter: ImageAdapter
     var selectedPaths = mutableListOf<String>()
@@ -74,6 +76,7 @@ class AddFragment : Fragment() {
         binding = FragmentAddBinding.inflate(inflater,container,false)
         imageAdapter = ImageAdapter()
         binding.rvImages.adapter = imageAdapter
+
 
         val selectImagesActivityResult =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -197,11 +200,15 @@ class AddFragment : Fragment() {
         val etTransmission = binding.chipGroupChoice4.transmission()
         val etWheel = binding.chipGroupChoice5.wheel()
 
+        val uid = firebaseAuth.currentUser?.uid.toString()
 
-        database = FirebaseDatabase.getInstance().getReference("Directory")
+
+        database = FirebaseDatabase.getInstance().getReference("Directory")//.child(uid)
+
 
 
         val etId = database.push().key!!
+ //       val uId = firebaseAuth.currentUser
         val directory = AddModel(
             etId,
             etTitle,

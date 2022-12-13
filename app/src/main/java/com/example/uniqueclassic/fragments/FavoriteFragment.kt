@@ -28,9 +28,7 @@ import java.io.InputStream
 
 class FavoriteFragment : Fragment() {
 
-    private lateinit var dbref : DatabaseReference
-    private lateinit var Recyclerview : RecyclerView
-    private lateinit var CarRecycler : ArrayList<AddModel>
+
 
 
 
@@ -40,11 +38,7 @@ class FavoriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var rootView = inflater.inflate(R.layout.fragment_favorite, container, false)
-        Recyclerview = rootView.findViewById(R.id.CarRecycler)
-        Recyclerview.layoutManager = LinearLayoutManager(requireContext())
-        Recyclerview.setHasFixedSize(true)
 
-        CarRecycler = arrayListOf<AddModel>()
 
 
         return rootView
