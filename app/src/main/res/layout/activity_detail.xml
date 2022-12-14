@@ -656,6 +656,8 @@
 
                     </LinearLayout>
 
+
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -673,7 +675,7 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_user" />
+                            android:src="@drawable/ic_file" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -703,6 +705,192 @@
                         android:layout_marginBottom="10dp"
                         app:cardBackgroundColor="@color/dark_gray2">
                     </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/ic_rent" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="5dp"
+                            android:gravity="bottom"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Rent"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Start of the rental"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                        <TextView
+                            android:id="@+id/startRent"
+                            android:layout_width="match_parent"
+                            android:layout_weight="50"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="End of the rental"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                        <TextView
+                            android:id="@+id/endRent"
+                            android:layout_width="match_parent"
+                            android:layout_weight="50"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/ButtonStartDate"
+                        style="@style/Widget.Material3.Button.ElevatedButton"
+
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Start date"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"
+                        app:backgroundTint="#E6B87C4C"
+                        app:cornerRadius="30dp" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:background="#00232323"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"/>
+
+
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/ButtonEndDate"
+                            style="@style/Widget.Material3.Button.ElevatedButton"
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="End date"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            app:backgroundTint="#E6B87C4C"
+                            app:cornerRadius="30dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="Preliminary cost :"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="100"
+                                android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/cost"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="75"
+                                android:fontFamily="@font/poppins_bold"
+                                android:text="2100"
+                                android:textColor="@color/button"
+                                android:textSize="18dp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="50"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="3dp"
+                                    android:text="pln"
+                                    android:textColor="@color/button"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/ButtonDate"
+                            style="@style/Widget.Material3.Button.ElevatedButton"
+                            android:layout_width="match_parent"
+                            android:layout_weight="50"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Book now"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            app:backgroundTint="#E6B87C4C"
+                            app:cornerRadius="30dp" />
+                    </LinearLayout>
 
                 </LinearLayout>
                 </LinearLayout>

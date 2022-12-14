@@ -40,6 +40,7 @@ class AddFragment : Fragment() {
     private lateinit var binding: FragmentAddBinding
     private lateinit var database : DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
+    var uid = FirebaseAuth.getInstance().currentUser!!.uid
 
 
     lateinit var imageAdapter: ImageAdapter
@@ -200,7 +201,7 @@ class AddFragment : Fragment() {
         val etTransmission = binding.chipGroupChoice4.transmission()
         val etWheel = binding.chipGroupChoice5.wheel()
 
-        val uid = firebaseAuth.currentUser?.uid.toString()
+     //   val uid = firebaseAuth.currentUser?.uid.toString()
 
 
         database = FirebaseDatabase.getInstance().getReference("Directory")//.child(uid)
@@ -208,9 +209,9 @@ class AddFragment : Fragment() {
 
 
         val etId = database.push().key!!
- //       val uId = firebaseAuth.currentUser
+    //    val uId = firebaseAuth.currentUser?.uid
         val directory = AddModel(
-            etId,
+            uid,
             etTitle,
             etVehicle,
             etDescription,

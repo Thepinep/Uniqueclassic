@@ -1,20 +1,25 @@
 package com.example.uniqueclassic
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.Gallery
-
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.example.uniqueclassic.Adapter.CustomizedGalleryAdapter
 import com.example.uniqueclassic.Adapter.loadImg
+import com.example.uniqueclassic.Model.Rent
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class DetailActivity : AppCompatActivity() {
+
+    private lateinit var dbRef: DatabaseReference
 
     private  lateinit var tvTitle: TextView
     private  lateinit var tvLocation: TextView
@@ -34,6 +39,24 @@ class DetailActivity : AppCompatActivity() {
     private  lateinit var tvUsername: TextView
     private  lateinit var tvDescription: TextView
 
+    private lateinit var  buttonstartdate: Button
+    private lateinit var  startrent: TextView
+    private lateinit var buttonenddate: Button
+    private lateinit var endrent: TextView
+
+
+    //var etSeller = null
+    var uid = FirebaseAuth.getInstance().currentUser!!.uid
+    private lateinit var etStartDate: TextView
+    private lateinit var etEndDate: TextView
+    private lateinit var etEmail: TextView
+    private lateinit var etPhone: TextView
+    private lateinit var etLocation: TextView
+    private lateinit var etCost: TextView
+    private lateinit var etButtonDate: TextView
+
+
+
     private lateinit var simpleGallery: Gallery
 
     // CustomizedGalleryAdapter is a java class which extends BaseAdapter
@@ -47,6 +70,51 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+
+        buttonstartdate = findViewById(R.id.ButtonStartDate)
+        buttonenddate = findViewById(R.id.ButtonEndDate)
+        startrent = findViewById(R.id.startRent)
+        endrent = findViewById(R.id.endRent)
+
+
+
+        etStartDate = findViewById(R.id.startRent)
+        etEndDate = findViewById(R.id.endRent)
+        etLocation = findViewById(R.id.text_Location)
+        etCost = findViewById(R.id.cost)
+        etButtonDate = findViewById(R.id.ButtonDate)
+
+
+        dbRef = FirebaseDatabase.getInstance().getReference("Reservations").child(uid)
+
+        etButtonDate.setOnClickListener {
+            saveReservationsData()
+        }
+
+
+
+
+
+        val myCalendar = Calendar.getInstance()
+        val dataPicker = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            myCalendar.set(Calendar.YEAR, year)
+            myCalendar.set(Calendar.MONTH, month)
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateLable(myCalendar)
+        }
+        val dataPicker2 = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            myCalendar.set(Calendar.YEAR, year)
+            myCalendar.set(Calendar.MONTH, month)
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateLable2(myCalendar)
+        }
+        buttonstartdate.setOnClickListener {
+            DatePickerDialog(this, dataPicker,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+        }
+        buttonenddate.setOnClickListener {
+            DatePickerDialog(this, dataPicker2,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+        }
+
 
         val buttonClick = findViewById<ImageView>(R.id.ButtonBack1)
         buttonClick.setOnClickListener {
@@ -84,6 +152,51 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun saveReservationsData() {
+        // val etSeller = etSeller.text.toString()
+       //  val etUsernameUid = etUsernameUid.text.toString()
+         val etStartDate = etStartDate.text.toString()
+         val etEndDate = etEndDate.text.toString()
+         //val etEmail = etEndDate.text.toString()
+         //val etPhone = etSeller.text.toString()
+         val etLocation = etLocation.text.toString()
+         val etCost = etCost.text.toString()
+
+        val empId = dbRef.push().key!!
+        val reservations = Rent(
+            //etSeller,
+             uid,
+             etStartDate,
+             etEndDate,
+             //etEmail,
+             //etPhone,
+             etLocation,
+            etCost
+        )
+        if (etStartDate.isNotEmpty() && etEndDate.isNotEmpty() && etLocation.isNotEmpty() && etCost.isNotEmpty()
+        ) {
+            dbRef.child(empId).setValue(reservations)
+                .addOnCompleteListener {
+                    Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                }
+        }
+
+
+    }
+
+    private fun updateLable(myCalendar: Calendar) {
+        val myFormat = "dd-MM-yyyy"
+        val sdf = SimpleDateFormat(myFormat, Locale.UK)
+        startrent.setText(sdf.format(myCalendar.time))
+
+    }
+    private fun updateLable2(myCalendar: Calendar) {
+        val myFormat = "dd-MM-yyyy"
+        val sdf = SimpleDateFormat(myFormat, Locale.UK)
+        endrent.setText(sdf.format(myCalendar.time))
+    }
     private fun initView() {
         tvTitle = findViewById(R.id.text_title)
         tvLocation = findViewById(R.id.text_Location)
