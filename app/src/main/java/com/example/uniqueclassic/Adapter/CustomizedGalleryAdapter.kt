@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.Gallery
 import android.widget.ImageView
 import com.example.uniqueclassic.R
 import com.google.firebase.storage.StorageReference

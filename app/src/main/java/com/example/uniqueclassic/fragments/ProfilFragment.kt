@@ -13,6 +13,7 @@ import com.example.uniqueclassic.Model.User
 import com.example.uniqueclassic.Pdf.PolicyActivity
 import com.example.uniqueclassic.ProfileActivity
 import com.example.uniqueclassic.databinding.FragmentProfilBinding
+import com.example.uniqueclassic.reservations.ReservationsActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.StorageReference
@@ -62,6 +63,9 @@ class ProfilFragment : Fragment() {
         }
         binding.AdsButton.setOnClickListener {
             startActivity(Intent(requireContext(), AdsActivity::class.java))
+        }
+        binding.ReserButton.setOnClickListener {
+            startActivity(Intent(requireContext(), ReservationsActivity::class.java))
         }
         binding.DeleteButton.setOnClickListener {
             addContactDialog.show()

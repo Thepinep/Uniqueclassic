@@ -1,6 +1,7 @@
 package com.example.uniqueclassic
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -75,8 +76,6 @@ class DetailActivity : AppCompatActivity() {
         buttonenddate = findViewById(R.id.ButtonEndDate)
         startrent = findViewById(R.id.startRent)
         endrent = findViewById(R.id.endRent)
-
-
 
         etStartDate = findViewById(R.id.startRent)
         etEndDate = findViewById(R.id.endRent)
@@ -162,22 +161,25 @@ class DetailActivity : AppCompatActivity() {
          val etLocation = etLocation.text.toString()
          val etCost = etCost.text.toString()
 
-        val empId = dbRef.push().key!!
+        val invoice = dbRef.push().key!!
         val reservations = Rent(
             //etSeller,
-             uid,
-             etStartDate,
-             etEndDate,
-             //etEmail,
-             //etPhone,
-             etLocation,
+            uid,
+            invoice,
+            etStartDate,
+            etEndDate,
+            //etEmail,
+            //etPhone,
+            etLocation,
             etCost
         )
         if (etStartDate.isNotEmpty() && etEndDate.isNotEmpty() && etLocation.isNotEmpty() && etCost.isNotEmpty()
         ) {
-            dbRef.child(empId).setValue(reservations)
+            dbRef.child(invoice).setValue(reservations)
                 .addOnCompleteListener {
                     Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, BookNowScreenActivity::class.java)
+                    startActivity(intent)
                 }.addOnFailureListener {
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                 }
