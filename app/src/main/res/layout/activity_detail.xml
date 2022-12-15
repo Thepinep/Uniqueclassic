@@ -327,7 +327,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/poppins_light"
-                                android:text="Seller"
+                                android:text="Tenant"
                                 android:textColor="@color/dark_gray"
                                 android:textSize="12dp" />
                             <LinearLayout
@@ -434,25 +434,24 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="42"
+                            android:layout_weight="40"
                             android:fontFamily="@font/poppins_light"
                             android:text="Cubic Capacity"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
                         <TextView
                             android:id="@+id/cubic_text"
-                            android:layout_width="match_parent"
-                            android:layout_weight="75"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="60"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
                             android:text="4998"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_weight="49"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
                             android:text="cm3"
@@ -495,7 +494,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="50"
                             android:fontFamily="@font/poppins_light"
@@ -504,18 +503,19 @@
                             android:textSize="12dp" />
                         <TextView
                             android:id="@+id/kilometre_text"
-                            android:layout_width="match_parent"
-                            android:layout_weight="85"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="50"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
                             android:text="100000"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_weight="65"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:fontFamily="@font/poppins_medium"
+                            android:layout_toRightOf="@id/kilometre_text"
                             android:text="km"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
@@ -624,7 +624,7 @@
                             android:layout_marginStart="5dp"
                             android:gravity="bottom"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="Seller"
+                            android:text="Tenant"
                             android:textColor="@color/white"
                             android:textSize="15dp" />
 
@@ -750,7 +750,7 @@
                             android:layout_weight="50"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
-                            android:text=""
+                            android:text="12-08-2022"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -777,7 +777,7 @@
                             android:layout_weight="50"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
-                            android:text=""
+                            android:text="23-01-2023"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -856,9 +856,8 @@
 
                             <TextView
                                 android:id="@+id/cost"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="75"
                                 android:fontFamily="@font/poppins_bold"
                                 android:text="2100"
                                 android:textColor="@color/button"
@@ -867,12 +866,12 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="50"
                                     android:fontFamily="@font/poppins_bold"
                                     android:layout_gravity="center"
-                                    android:layout_marginLeft="3dp"
+                                    android:layout_marginLeft="5dp"
                                     android:text="pln"
                                     android:textColor="@color/button"
+                                    android:layout_toRightOf="@id/cost"
                                     android:textSize="18dp"
                                     android:textStyle="bold" />
                             </LinearLayout>

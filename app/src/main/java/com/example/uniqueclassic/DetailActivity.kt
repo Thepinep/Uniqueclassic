@@ -2,9 +2,11 @@ package com.example.uniqueclassic
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.uniqueclassic.Adapter.CustomizedGalleryAdapter
 import com.example.uniqueclassic.Adapter.loadImg
@@ -15,7 +17,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.text.SimpleDateFormat
+
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 class DetailActivity : AppCompatActivity() {
@@ -41,13 +45,16 @@ class DetailActivity : AppCompatActivity() {
     private  lateinit var tvDescription: TextView
 
     private lateinit var  buttonstartdate: Button
-    private lateinit var  startrent: TextView
     private lateinit var buttonenddate: Button
+    private lateinit var  startrent: TextView
     private lateinit var endrent: TextView
 
 
     //var etSeller = null
     var uid = FirebaseAuth.getInstance().currentUser!!.uid
+    private lateinit var etTenant: TextView
+    private lateinit var TenantUid: TextView
+    private lateinit var title: TextView
     private lateinit var etStartDate: TextView
     private lateinit var etEndDate: TextView
     private lateinit var etEmail: TextView
@@ -55,19 +62,20 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var etLocation: TextView
     private lateinit var etCost: TextView
     private lateinit var etButtonDate: TextView
+    private lateinit var plntext: TextView
+
+
+
 
 
 
     private lateinit var simpleGallery: Gallery
 
-    // CustomizedGalleryAdapter is a java class which extends BaseAdapter
-    // and implement the override methods.
+
     private lateinit var customGalleryAdapter: CustomizedGalleryAdapter
     private lateinit var selectedImageView: ImageView
 
-    // To show the selected language, we need this
-    // array of images, here taken 10 different kind of
-    // most popular programming languages
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -76,8 +84,9 @@ class DetailActivity : AppCompatActivity() {
         buttonenddate = findViewById(R.id.ButtonEndDate)
         startrent = findViewById(R.id.startRent)
         endrent = findViewById(R.id.endRent)
-
+        etTenant =findViewById(R.id.user_text)
         etStartDate = findViewById(R.id.startRent)
+        title = findViewById(R.id.text_title)
         etEndDate = findViewById(R.id.endRent)
         etLocation = findViewById(R.id.text_Location)
         etCost = findViewById(R.id.cost)
@@ -90,7 +99,20 @@ class DetailActivity : AppCompatActivity() {
             saveReservationsData()
         }
 
+        startrent = findViewById(R.id.startRent)
+        endrent = findViewById(R.id.endRent)
+        plntext = findViewById(R.id.pln_text)
 
+        val date1String = startrent.text.toString()
+        val date2String = endrent.text.toString()
+        val date1 = SimpleDateFormat("dd-MM-yyyy").parse(date1String)
+        val date2 = SimpleDateFormat("dd-MM-yyyy").parse(date2String)
+        val diffInDays = TimeUnit.DAYS.convert(date2.time - date1.time, TimeUnit.MILLISECONDS)
+        val resultTextView = findViewById<TextView>(R.id.cost)
+        val inputText = plntext.text.toString()
+        val inputValue = inputText.toInt()
+        val result =   inputValue * diffInDays
+        resultTextView.text = result.toString()
 
 
 
@@ -151,29 +173,34 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun saveReservationsData() {
-        // val etSeller = etSeller.text.toString()
-       //  val etUsernameUid = etUsernameUid.text.toString()
+         val etTenant = etTenant.text.toString()
+       //  val TenantUid = etUsernameUid.text.toString()
          val etStartDate = etStartDate.text.toString()
          val etEndDate = etEndDate.text.toString()
          //val etEmail = etEndDate.text.toString()
          //val etPhone = etSeller.text.toString()
-         val etLocation = etLocation.text.toString()
+         var title = title.text.toString()
+         val location = etLocation.text.toString()
          val etCost = etCost.text.toString()
 
         val invoice = dbRef.push().key!!
         val reservations = Rent(
-            //etSeller,
+            etTenant,
+            //TenantUid,
             uid,
             invoice,
+            title,
             etStartDate,
             etEndDate,
             //etEmail,
             //etPhone,
-            etLocation,
+            location,
             etCost
         )
-        if (etStartDate.isNotEmpty() && etEndDate.isNotEmpty() && etLocation.isNotEmpty() && etCost.isNotEmpty()
+        if (etStartDate.isNotEmpty() && etEndDate.isNotEmpty() && location.isNotEmpty() && etCost.isNotEmpty()
         ) {
             dbRef.child(invoice).setValue(reservations)
                 .addOnCompleteListener {

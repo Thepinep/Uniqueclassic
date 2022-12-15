@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -25,12 +26,15 @@ class SearchAdapter(
     }
 
     private lateinit var mListener: onItemClickListener
+    private lateinit var button: Button
+
 
     interface onItemClickListener{
         fun onItemClick(position: Int)
     }
 
     fun setOnItemClickListener(clickListener: onItemClickListener){
+
         mListener = clickListener
     }
 
