@@ -47,13 +47,24 @@ class ProfilFragment : Fragment() {
             .setTitle("Are you sure?")
             .setMessage("Deleting this account will reset in completely removing your " +" account form the system and you won,t be able to access the app.")
             .setPositiveButton("Account Deleted") { dialogInterface, i ->
-              /*  user = FirebaseAuth.getInstance()
-                user.delete()*/
-                /*val user = firebaseAuth.currentUser
-                user.delete()?*/
-                val intent = Intent(requireContext(), LoginActivity::class.java)
-                startActivity(intent)
-                activity?.finish()
+                val auth = FirebaseAuth.getInstance()
+                val databaseReference = FirebaseDatabase.getInstance()
+                val childRef = databaseReference.getReference("User").child(uid)
+                val childRef2 = databaseReference.getReference("Reservations").child(uid)
+               // val childRef3 = databaseReference.getReference("Directory").child(uid)
+                childRef.removeValue()
+                childRef2.removeValue()
+               // childRef3.removeValue()
+                val user = auth.currentUser
+                user?.delete()
+                    ?.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val intent = Intent(requireContext(), LoginActivity::class.java)
+                            startActivity(intent)
+                            activity?.finish()
+                        } else {
+                        }
+                    }
             }
             .setNegativeButton("Dismiss") { dialogInterface, i ->
             }.create()

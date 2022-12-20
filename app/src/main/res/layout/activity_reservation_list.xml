@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_gray3"
+    tools:context=".reservations.ReservationListActivity">
+
+
+
+
+<com.google.android.material.appbar.AppBarLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="@color/dark_gray3"
+app:elevation="0dp">
+
+
+<com.google.android.material.appbar.MaterialToolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    app:theme="@style/Widget.AppCompat.Toolbar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="34dp"
+            android:clickable="true"
+            android:id="@+id/ButtonClose"
+            android:layout_height="34dp"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_black" />
+
+        <TextView
+            android:id="@+id/textView_bolt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/white"
+            android:text="Your reservations "/>
+
+    </LinearLayout>
+
+</com.google.android.material.appbar.MaterialToolbar>
+
+</com.google.android.material.appbar.AppBarLayout>
+
+
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#40FF0000"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="15dp">
+
+        <TextView
+            android:id="@+id/textView_mid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="In case of cancellation or changes to the reservation, please contact the tenant !!!"
+            android:textColor="@color/white"
+            android:layout_marginTop="5dp"
+            android:textSize="15dp" />
+    </androidx.cardview.widget.CardView>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            tools:listitem="@layout/reservations_adapter_item"
+            android:id="@+id/CarRecycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
+</ScrollView>
+
+</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
