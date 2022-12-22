@@ -3,6 +3,7 @@ package com.example.uniqueclassic
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -10,6 +11,7 @@ import com.example.uniqueclassic.Model.AddModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uniqueclassic.Adapter.AdsAdapter
+import com.google.firebase.auth.FirebaseAuth
 
 
 import com.google.firebase.database.*
@@ -21,6 +23,7 @@ class AdsActivity : AppCompatActivity() {
     private lateinit var dbref : DatabaseReference
     private lateinit var Recyclerview2 : RecyclerView
     private lateinit var userArrayList2 : ArrayList<AddModel>
+    var uid = FirebaseAuth.getInstance().currentUser!!.uid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +45,8 @@ class AdsActivity : AppCompatActivity() {
     }
     private fun getCarData() {
 
-        dbref = FirebaseDatabase.getInstance().getReference("Directory")
+
+        dbref = FirebaseDatabase.getInstance().getReference("Directory").child(uid)
 
         dbref.addValueEventListener(object : ValueEventListener {
 

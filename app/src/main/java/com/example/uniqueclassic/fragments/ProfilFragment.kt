@@ -51,10 +51,10 @@ class ProfilFragment : Fragment() {
                 val databaseReference = FirebaseDatabase.getInstance()
                 val childRef = databaseReference.getReference("User").child(uid)
                 val childRef2 = databaseReference.getReference("Reservations").child(uid)
-               // val childRef3 = databaseReference.getReference("Directory").child(uid)
+                val childRef3 = databaseReference.getReference("Directory").child(uid)
                 childRef.removeValue()
                 childRef2.removeValue()
-               // childRef3.removeValue()
+                childRef3.removeValue()
                 val user = auth.currentUser
                 user?.delete()
                     ?.addOnCompleteListener { task ->

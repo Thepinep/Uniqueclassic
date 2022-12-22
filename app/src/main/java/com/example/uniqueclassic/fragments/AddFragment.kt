@@ -201,15 +201,12 @@ class AddFragment : Fragment() {
         val etTransmission = binding.chipGroupChoice4.transmission()
         val etWheel = binding.chipGroupChoice5.wheel()
 
-     //   val uid = firebaseAuth.currentUser?.uid.toString()
 
-
-        database = FirebaseDatabase.getInstance().getReference("Directory")//.child(uid)
+        database = FirebaseDatabase.getInstance().getReference("Directory").child(uid)
 
 
 
         val etId = database.push().key!!
-    //    val uId = firebaseAuth.currentUser?.uid
         val directory = AddModel(
             uid,
             etTitle,

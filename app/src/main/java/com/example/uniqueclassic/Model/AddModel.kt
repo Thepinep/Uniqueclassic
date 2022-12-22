@@ -24,3 +24,7 @@ data class AddModel (
     val etLocation: String? = null,
     val etgalery : List<String> = emptyList()
         )
+
+class WszystkieOgloszenia{
+    val ogloszeniaUserow: Map<String, AddModel>? = null
+}
