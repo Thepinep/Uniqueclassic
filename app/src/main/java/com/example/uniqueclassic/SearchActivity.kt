@@ -14,7 +14,7 @@ import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListener {
 
     private lateinit var dbref : DatabaseReference
     private lateinit var Recyclerview : RecyclerView
@@ -58,36 +58,49 @@ class SearchActivity : AppCompatActivity() {
 
                 val storageReference = Firebase.storage.reference
 
-                val mAdapter = SearchAdapter(CarRecycler , storageReference)
+                val mAdapter = SearchAdapter(
+                    CarRecycler = CarRecycler,
+                    storageReference = storageReference,
+                    bookButtonListener = this@SearchActivity,
+                    heartButtonListener = this@SearchActivity,
+                )
                 Recyclerview.adapter = mAdapter
-
-                mAdapter.setOnItemClickListener(object :SearchAdapter.onItemClickListener{
-                    override fun onItemClick(position: Int) {
-                        val intent = Intent(this@SearchActivity, DetailActivity::class.java)
-
-                        intent.putExtra("etTitle", CarRecycler[position].etTitle)
-                        intent.putExtra("etLocation", CarRecycler[position].etLocation)
-                        intent.putExtra("etPrice", CarRecycler[position].etPrice)
-                        intent.putExtra("etPower", CarRecycler[position].etPower)
-                        intent.putExtra("etTransmission", CarRecycler[position].etTransmission)
-                        intent.putExtra("etFuel", CarRecycler[position].etFuel)
-                        intent.putExtra("etSeller", CarRecycler[position].etSeller)
-                        intent.putExtra("etVin", CarRecycler[position].etVin)
-                        intent.putExtra("etYear", CarRecycler[position].etYear)
-                        intent.putExtra("etCubic", CarRecycler[position].etCubic)
-                        intent.putExtra("etBody", CarRecycler[position].etBody)
-                        intent.putExtra("etKilometre", CarRecycler[position].etKilometre)
-                        intent.putExtra("etColor", CarRecycler[position].etColor)
-                        intent.putExtra("etCountry", CarRecycler[position].etCountry)
-                        intent.putExtra("etWheel", CarRecycler[position].etWheel)
-                        intent.putExtra("etUsername", CarRecycler[position].etUsername)
-                        intent.putExtra("etDescription", CarRecycler[position].etDescription)
-                        intent.putExtra("etgalery", (CarRecycler[position].etgalery).toTypedArray())
-
-                        startActivity(intent)
-                    }
-                })
             }
         }
     }
+
+    override fun onClick(item: AddModel) {
+        val intent = Intent(this@SearchActivity, DetailActivity::class.java)
+        intent.putExtra("etTitle", item.etTitle)
+        intent.putExtra("etLocation", item.etLocation)
+        intent.putExtra("etPrice", item.etPrice)
+        intent.putExtra("etPower", item.etPower)
+        intent.putExtra("etTransmission", item.etTransmission)
+        intent.putExtra("etFuel", item.etFuel)
+        intent.putExtra("etSeller", item.etSeller)
+        intent.putExtra("etVin", item.etVin)
+        intent.putExtra("etYear", item.etYear)
+        intent.putExtra("etCubic", item.etCubic)
+        intent.putExtra("etBody", item.etBody)
+        intent.putExtra("etKilometre", item.etKilometre)
+        intent.putExtra("etColor", item.etColor)
+        intent.putExtra("etCountry", item.etCountry)
+        intent.putExtra("etWheel", item.etWheel)
+        intent.putExtra("etUsername", item.etUsername)
+        intent.putExtra("etDescription", item.etDescription)
+        intent.putExtra("etgalery", (item.etgalery).toTypedArray())
+        startActivity(intent)
+    }
+
+    override fun onChanged(item: AddModel, state: Boolean) {
+        ///////
+    }
+}
+
+interface BookButtonListener{
+    fun onClick(item: AddModel)
+}
+
+interface HeartButtonListener{
+    fun onChanged(item: AddModel, state: Boolean)
 }

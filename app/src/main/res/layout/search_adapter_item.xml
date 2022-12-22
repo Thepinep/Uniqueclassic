@@ -40,12 +40,13 @@
                     android:textSize="17dp"
                     android:textStyle="bold" />
 
-                <ImageView
+                <CheckBox
+                    android:id="@+id/serce"
                     android:layout_width="29dp"
                     android:layout_height="29dp"
+                    android:button="@drawable/sl_favourite"
                     android:layout_alignParentRight="true"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_favorite" />
+                    android:layout_gravity="center" />
 
             </RelativeLayout>
             <LinearLayout

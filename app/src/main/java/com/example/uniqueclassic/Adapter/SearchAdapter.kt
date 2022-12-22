@@ -1,50 +1,40 @@
 package com.example.uniqueclassic.Adapter
 
-
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.CheckBox
+import android.widget.CompoundButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.uniqueclassic.BookButtonListener
+import com.example.uniqueclassic.HeartButtonListener
 import com.example.uniqueclassic.Model.AddModel
 import com.example.uniqueclassic.R
-import com.google.firebase.database.DataSnapshot
 import com.google.firebase.storage.StorageReference
-
 
 class SearchAdapter(
     private val CarRecycler: ArrayList<AddModel>,
-    private val storageReference: StorageReference?
+    private val storageReference: StorageReference?,
+    private val bookButtonListener: BookButtonListener,
+    private val heartButtonListener: HeartButtonListener,
 ) : RecyclerView.Adapter<SearchAdapter.MyViewHolder>() {
 
     companion object {
         const val IMAGES_PATH = "images/"
     }
 
-    private lateinit var mListener: onItemClickListener
-    private lateinit var button: Button
-
-
-    interface onItemClickListener{
-        fun onItemClick(position: Int)
-    }
-
-    fun setOnItemClickListener(clickListener: onItemClickListener){
-
-        mListener = clickListener
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate( R.layout.search_adapter_item, parent, false)
-        return MyViewHolder(itemView,mListener)
+        return MyViewHolder(itemView)
     }
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        val currentitem = CarRecycler[position]
+        val currentitem: AddModel = CarRecycler[position]
 
         holder.title.text = currentitem.etTitle
         holder.power.text = currentitem.etPower
@@ -53,17 +43,21 @@ class SearchAdapter(
         holder.body.text = currentitem.etBody
         holder.zl.text = currentitem.etPrice
         holder.image.loadImg(holder.itemView.context,storageReference, currentitem.etgalery[0])
-
+        holder.bookBtn.setOnClickListener {
+            bookButtonListener.onClick(currentitem)
+        }
+        holder.serce.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener{
+            override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
+                heartButtonListener.onChanged(currentitem, p1)
+            }
+        })
     }
 
-
     override fun getItemCount(): Int {
-
         return CarRecycler.size
     }
 
-
-    class MyViewHolder(itemView : View, clickListener: onItemClickListener) : RecyclerView.ViewHolder(itemView){
+    class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
         val title : TextView = itemView.findViewById(R.id.title_text)
         val power : TextView = itemView.findViewById(R.id.power_text)
@@ -72,16 +66,8 @@ class SearchAdapter(
         val body : TextView = itemView.findViewById(R.id.body_text)
         val zl : TextView = itemView.findViewById(R.id.zl_text)
         val image : ImageView = itemView.findViewById(R.id.image_car)
-
-
-        init{
-            itemView.setOnClickListener {
-                clickListener.onItemClick(adapterPosition)
-
-
-
-            }
-        }
+        val bookBtn: TextView = itemView.findViewById(R.id.book_button)
+        val serce: CheckBox = itemView.findViewById(R.id.serce)
     }
 }
 fun ImageView.loadImg(context: Context, storageReference: StorageReference?, imgName :String ){
