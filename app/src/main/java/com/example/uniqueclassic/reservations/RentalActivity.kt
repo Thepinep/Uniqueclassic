@@ -32,23 +32,24 @@ class RentalActivity : AppCompatActivity() {
     }
 
     private fun getCarData() {
-
-            dbref = FirebaseDatabase.getInstance().getReference("Reservations").child(uid)
-
-            dbref.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        for (userSnapshot in snapshot.children) {
-                            val Reservation = userSnapshot.getValue(Rent::class.java)
-                            userArrayList4.add(Reservation!!)
-                        }
-                        val mAdapter = RentalAdapter(userArrayList4)
-                        Recyclerview4.adapter = mAdapter
+        dbref = FirebaseDatabase.getInstance().getReference("Reservations")
+        val t: GenericTypeIndicator<Map<String, Map<String, Rent>>> = object : GenericTypeIndicator<Map<String, Map<String, Rent>>>() {}
+        dbref.get().addOnCompleteListener {
+            if(it.isSuccessful){
+                val snap: DataSnapshot = it.result
+                val zmapowane: Map<String, Map<String, Rent>>? = snap.getValue(t)
+                val rentyCurrentUsera: List<Rent>? = zmapowane
+                    ?.values
+                    ?.map { it.values }
+                    ?.flatten()
+                    ?.filter {
+                        it.TenantUid == uid
                     }
-                }
-                override fun onCancelled(error: DatabaseError) {
 
-                }
-            })
+
+                val mAdapter = RentalAdapter(rentyCurrentUsera)
+                Recyclerview4.adapter = mAdapter
+            }
+        }
     }
 }

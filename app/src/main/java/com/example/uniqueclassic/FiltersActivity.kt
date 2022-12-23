@@ -3,6 +3,8 @@ package com.example.uniqueclassic
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.uniqueclassic.databinding.ActivityFiltersBinding
@@ -12,6 +14,9 @@ class FiltersActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFiltersBinding
 
+    val vehicles by lazy { resources.getStringArray(R.array.Vehicle) }
+
+    var selected: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,15 +25,19 @@ class FiltersActivity : AppCompatActivity() {
 
         binding.button.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
-    //        val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("marka", selected)
             startActivity(intent)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        val vehicle = resources.getStringArray(R.array.Vehicle)
-        val arrayAdapter = ArrayAdapter(this, R.layout.dropdown_item, vehicle)
-        binding.AutoCompleteTextview.setAdapter(arrayAdapter)
+        val arrayAdapter = ArrayAdapter(this, R.layout.dropdown_item, vehicles)
+        binding.AutoCompleteTextview2.setAdapter(arrayAdapter)
+        binding.AutoCompleteTextview2.onItemClickListener = object : AdapterView.OnItemClickListener{
+            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                selected = vehicles[p2]
+            }
+        }
     }
 }

@@ -38,7 +38,7 @@ RecyclerView.Adapter<ReservationAdapter.MyViewHolder3>() {
         holder.StartDate.text = currentitem.etStartDate
         holder.EndDate.text = currentitem.etEndDate
         holder.Cost.text = currentitem.etCost
-       // holder.Phone.text = currentitem.etPhone
+        holder.Phone.text = currentitem.etPhone
 
 
     }
@@ -56,7 +56,7 @@ RecyclerView.Adapter<ReservationAdapter.MyViewHolder3>() {
         val StartDate : TextView = itemView.findViewById(R.id.start_text)
         val EndDate : TextView = itemView.findViewById(R.id.end_text)
         val Cost : TextView = itemView.findViewById(R.id.cost_text)
-      //  val Phone : TextView = itemView.findViewById(R.id.phone_tenant_text)
+        val Phone : TextView = itemView.findViewById(R.id.phone_tenant_text)
 
 
         init {

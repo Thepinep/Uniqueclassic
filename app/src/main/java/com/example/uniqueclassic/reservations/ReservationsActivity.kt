@@ -81,24 +81,20 @@ class ReservationsActivity : AppCompatActivity() {
 
     private fun initView2() {
         tvTenant = findViewById(R.id.username2_text)
-     //   tvTenantUid = findViewById(R.id.)
         tvinvoice = findViewById(R.id.number_text)
         tvStartDate = findViewById(R.id.start_text)
         tvEndDate = findViewById(R.id.end_text)
-       // tvEmail = findViewById(R.id.)
-       // tvPhone = findViewById(R.id.)
+        tvPhone = findViewById(R.id.phon2_text)
         tvlocation = findViewById(R.id.location2_text)
         tvCost = findViewById(R.id.sum_text)
     }
 
     private fun setValuesToViews2() {
         tvTenant.text = intent.getStringExtra("etTenant")
-     //   tvTenantUid.text = intent.getStringExtra("TenantUid")
         tvinvoice.text = intent.getStringExtra("invoice")
         tvStartDate.text = intent.getStringExtra("etStartDate")
         tvEndDate.text = intent.getStringExtra("etEndDate")
-    //    tvEmail.text = intent.getStringExtra("etEmail")
-    //    tvPhone.text = intent.getStringExtra("etPhone")
+        tvPhone.text = intent.getStringExtra("etPhone")
         tvlocation.text = intent.getStringExtra("location")
         tvCost.text = intent.getStringExtra("etCost")
 

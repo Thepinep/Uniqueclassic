@@ -36,15 +36,12 @@ class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListe
         Recyclerview.setHasFixedSize(true)
 
         CarRecycler = arrayListOf<AddModel>()
-        getCarData()
+        getCarData(intent.getStringExtra("marka"))
 
 
     }
-    private fun getCarData() {
-
+    private fun getCarData(marka: String?) {
         dbref = FirebaseDatabase.getInstance().getReference("Directory")
-
-
         val t: GenericTypeIndicator<Map<String, Map<String, AddModel>>> = object : GenericTypeIndicator<Map<String, Map<String, AddModel>>>() {}
         dbref.get().addOnCompleteListener {
             if(it.isSuccessful){
@@ -54,6 +51,9 @@ class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListe
                     ?.values
                     ?.map { it.values }
                     ?.flatten()
+                    ?.filter { addModel ->
+                        marka?.let { addModel.etVehicle == marka } ?: true
+                    }
                 CarRecycler.addAll(wszystkieOgl?.toList() ?: emptyList())
 
                 val storageReference = Firebase.storage.reference
@@ -89,6 +89,8 @@ class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListe
         intent.putExtra("etUsername", item.etUsername)
         intent.putExtra("etDescription", item.etDescription)
         intent.putExtra("etgalery", (item.etgalery).toTypedArray())
+        intent.putExtra("etPhone", item.etPhone)
+        intent.putExtra("uid", item.uid)
         startActivity(intent)
     }
 

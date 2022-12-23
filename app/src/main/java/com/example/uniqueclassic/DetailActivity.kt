@@ -48,7 +48,7 @@ class DetailActivity : AppCompatActivity() {
 
 
     //var etSeller = null
-    var uid = FirebaseAuth.getInstance().currentUser!!.uid
+    var currentUserUid = FirebaseAuth.getInstance().currentUser!!.uid
     private lateinit var buyphone: EditText
     private lateinit var buyname :EditText
     private lateinit var etTenant: TextView
@@ -93,7 +93,7 @@ class DetailActivity : AppCompatActivity() {
 
 
 
-        dbRef = FirebaseDatabase.getInstance().getReference("Reservations").child(uid)
+        dbRef = FirebaseDatabase.getInstance().getReference("Reservations").child(currentUserUid)
 
         etButtonDate.setOnClickListener {
             saveReservationsData()
@@ -103,18 +103,7 @@ class DetailActivity : AppCompatActivity() {
         endrent = findViewById(R.id.endRent)
         plntext = findViewById(R.id.pln_text)
 
-        val date1String = startrent.text.toString()
-        val date2String = endrent.text.toString()
-        val date1 = SimpleDateFormat("dd-MM-yyyy").parse(date1String)
-        val date2 = SimpleDateFormat("dd-MM-yyyy").parse(date2String)
-        val diffInDays = TimeUnit.DAYS.convert(date2.time - date1.time, TimeUnit.MILLISECONDS)
-        val resultTextView = findViewById<TextView>(R.id.cost)
-        val inputText = plntext.text.toString()
-        val inputValue = inputText.toInt()
-        val result =   inputValue * diffInDays
-        resultTextView.text = result.toString()
-
-
+        recalculate()
 
         val myCalendar = Calendar.getInstance()
         val dataPicker = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
@@ -122,13 +111,16 @@ class DetailActivity : AppCompatActivity() {
             myCalendar.set(Calendar.MONTH, month)
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             updateLable(myCalendar)
+            recalculate()
         }
         val dataPicker2 = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
             myCalendar.set(Calendar.YEAR, year)
             myCalendar.set(Calendar.MONTH, month)
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             updateLable2(myCalendar)
+            recalculate()
         }
+
         buttonstartdate.setOnClickListener {
             DatePickerDialog(this, dataPicker,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show()
         }
@@ -174,6 +166,18 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun recalculate() {
+        val date1String = startrent.text.toString()
+        val date2String = endrent.text.toString()
+        val date1 = SimpleDateFormat("dd-MM-yyyy").parse(date1String)
+        val date2 = SimpleDateFormat("dd-MM-yyyy").parse(date2String)
+        val diffInDays = TimeUnit.DAYS.convert(date2.time - date1.time, TimeUnit.MILLISECONDS)
+        val resultTextView = findViewById<TextView>(R.id.cost)
+        val inputText = plntext.text.toString()
+        val inputValue = inputText.toInt()
+        val result =   inputValue * diffInDays
+        if(result >= 0) resultTextView.text = result.toString()
+    }
 
 
     private fun saveReservationsData() {
@@ -183,35 +187,35 @@ class DetailActivity : AppCompatActivity() {
 
 
          val etTenant = etTenant.text.toString()
-       //  val TenantUid = etUsernameUid.text.toString()
          val etStartDate = etStartDate.text.toString()
          val etEndDate = etEndDate.text.toString()
-         //val etEmail = etEndDate.text.toString()
-         //val etPhone = etSeller.text.toString()
          var title = title.text.toString()
          val location = etLocation.text.toString()
          val etCost = etCost.text.toString()
         val buyPhone = buyphone.text.toString()
         val buyName = buyname.text.toString()
+        val etPhone = intent.getStringExtra("etPhone")
+        val uid = intent.getStringExtra("uid")
+
+
 
 
         val invoice = dbRef.push().key!!
         val reservations = Rent(
-            etTenant,
-            //TenantUid,
-            uid,
-            invoice,
-            title,
-            etStartDate,
-            etEndDate,
-            //etEmail,
-            //etPhone,
-            location,
-            etCost,
-            buyName,
-            buyPhone
-
+            etTenant = etTenant,
+            TenantUid = uid,
+            uid = currentUserUid,
+            invoice = invoice,
+            title = title,
+            etStartDate = etStartDate,
+            etEndDate = etEndDate,
+            etPhone = etPhone,
+            location = location,
+            etCost = etCost,
+            buyName = buyName,
+            buyPhone = buyPhone
         )
+
         if (etStartDate.isNotEmpty() && etEndDate.isNotEmpty() && location.isNotEmpty() && etCost.isNotEmpty()&& buyName.isNotEmpty()&& buyPhone.isNotEmpty()
         ) {
             dbRef.child(invoice).setValue(reservations)
@@ -277,6 +281,7 @@ class DetailActivity : AppCompatActivity() {
         tvWheel.text = intent.getStringExtra("etWheel")
         tvUsername.text = intent.getStringExtra("etUsername")
         tvDescription.text = intent.getStringExtra("etDescription")
+
 
     }
 }
