@@ -2,11 +2,9 @@ package com.example.uniqueclassic
 
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.uniqueclassic.Adapter.CustomizedGalleryAdapter
 import com.example.uniqueclassic.Adapter.loadImg
@@ -17,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.text.SimpleDateFormat
-
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -52,6 +49,8 @@ class DetailActivity : AppCompatActivity() {
 
     //var etSeller = null
     var uid = FirebaseAuth.getInstance().currentUser!!.uid
+    private lateinit var buyphone: EditText
+    private lateinit var buyname :EditText
     private lateinit var etTenant: TextView
     private lateinit var TenantUid: TextView
     private lateinit var title: TextView
@@ -91,6 +90,7 @@ class DetailActivity : AppCompatActivity() {
         etLocation = findViewById(R.id.text_Location)
         etCost = findViewById(R.id.cost)
         etButtonDate = findViewById(R.id.ButtonDate)
+
 
 
         dbRef = FirebaseDatabase.getInstance().getReference("Reservations").child(uid)
@@ -143,6 +143,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         initView()
+
         setValuesToViews()
 
 
@@ -176,6 +177,11 @@ class DetailActivity : AppCompatActivity() {
 
 
     private fun saveReservationsData() {
+
+        buyphone= findViewById(R.id.textInputEditBuyPhone)
+        buyname= findViewById(R.id.textInputEditBuyName)
+
+
          val etTenant = etTenant.text.toString()
        //  val TenantUid = etUsernameUid.text.toString()
          val etStartDate = etStartDate.text.toString()
@@ -185,6 +191,9 @@ class DetailActivity : AppCompatActivity() {
          var title = title.text.toString()
          val location = etLocation.text.toString()
          val etCost = etCost.text.toString()
+        val buyPhone = buyphone.text.toString()
+        val buyName = buyname.text.toString()
+
 
         val invoice = dbRef.push().key!!
         val reservations = Rent(
@@ -198,9 +207,12 @@ class DetailActivity : AppCompatActivity() {
             //etEmail,
             //etPhone,
             location,
-            etCost
+            etCost,
+            buyName,
+            buyPhone
+
         )
-        if (etStartDate.isNotEmpty() && etEndDate.isNotEmpty() && location.isNotEmpty() && etCost.isNotEmpty()
+        if (etStartDate.isNotEmpty() && etEndDate.isNotEmpty() && location.isNotEmpty() && etCost.isNotEmpty()&& buyName.isNotEmpty()&& buyPhone.isNotEmpty()
         ) {
             dbRef.child(invoice).setValue(reservations)
                 .addOnCompleteListener {

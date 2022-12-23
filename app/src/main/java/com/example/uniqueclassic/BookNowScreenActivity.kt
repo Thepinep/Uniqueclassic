@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import com.example.uniqueclassic.databinding.ActivityBookNowScreenBinding
+import com.example.uniqueclassic.reservations.ReservationListActivity
 import com.example.uniqueclassic.reservations.ReservationsActivity
 
 class BookNowScreenActivity : AppCompatActivity() {
@@ -22,7 +23,7 @@ class BookNowScreenActivity : AppCompatActivity() {
         handler = Handler(Looper.myLooper()!!)
 
         handler.postDelayed({
-            val intent = Intent(this, ReservationsActivity::class.java)
+            val intent = Intent(this, ReservationListActivity::class.java)
             startActivity(intent)
             finish()
 

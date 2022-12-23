@@ -11,6 +11,8 @@ data class Rent (
     //var etEmail: String? = null,
    // var etPhone: String? = null,
     var location: String? = null,
-    var etCost: String? = null
+    var etCost: String? = null,
+    var  buyName: String? = null,
+    var buyPhone: String? = null
 
 )

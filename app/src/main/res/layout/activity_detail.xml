@@ -99,7 +99,7 @@
                     <TextView
                         android:id="@+id/text_Location"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="25dp"
                         android:layout_marginTop="1dp"
                         android:layout_marginStart="1dp"
                         android:gravity="bottom"
@@ -729,11 +729,79 @@
 
                     </LinearLayout>
 
+                    <TextView
+                        android:id="@+id/textView_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="Phone"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="5dp"
+                        android:textSize="15dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutBuyPhone"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        app:boxBackgroundColor="@color/dark_gray2"
+                        app:hintTextColor="@color/white"
+                        app:boxCornerRadiusTopEnd="5dp"
+                        app:boxCornerRadiusTopStart="5dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputEditBuyPhone"
+                            android:layout_width="match_parent"
+                            android:maxLength="9"
+                            android:paddingTop="16dp"
+                            android:inputType = "phone"
+                            android:paddingBottom="16dp"
+                            android:lines="1"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/textView_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="Username"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="10dp"
+                        android:textSize="15dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutBuyName"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        app:boxBackgroundColor="@color/dark_gray2"
+                        app:hintTextColor="@color/white"
+                        app:boxCornerRadiusTopEnd="5dp"
+                        app:boxCornerRadiusTopStart="5dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputEditBuyName"
+                            android:layout_width="match_parent"
+                            android:maxLength="9"
+                            android:paddingTop="16dp"
+                            android:inputType = "text"
+                            android:paddingBottom="16dp"
+                            android:lines="1"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="100"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -750,7 +818,7 @@
                             android:layout_weight="50"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="12-08-2022"
+                            android:text="00-00-0000"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -777,7 +845,7 @@
                             android:layout_weight="50"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="23-01-2023"
+                            android:text="00-00-0000"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 

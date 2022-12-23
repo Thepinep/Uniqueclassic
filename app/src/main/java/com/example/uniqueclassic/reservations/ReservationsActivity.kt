@@ -12,6 +12,19 @@ import org.w3c.dom.Text
 
 class ReservationsActivity : AppCompatActivity() {
 
+    private lateinit var tvTenant:TextView
+    private lateinit var tvTenantUid:TextView
+    private lateinit var tvuid:TextView
+    private lateinit var tvinvoice:TextView
+    private lateinit var tvtitle:TextView
+    private lateinit var tvStartDate:TextView
+    private lateinit var tvEndDate:TextView
+    private lateinit var tvEmail:TextView
+    private lateinit var tvPhone:TextView
+    private lateinit var tvlocation:TextView
+    private lateinit var tvCost:TextView
+
+
     private  lateinit var sum: TextView
     private  lateinit var vat: TextView
     private  lateinit var fee: TextView
@@ -22,6 +35,9 @@ class ReservationsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reservations)
+
+        initView2()
+        setValuesToViews2()
 
         val buttonClick = findViewById<ImageView>(R.id.back2_click)
         buttonClick.setOnClickListener {
@@ -59,6 +75,32 @@ class ReservationsActivity : AppCompatActivity() {
         val result3 = inputValue3 - discount3 -discount4
         val formattedResult3 = "%.2f".format(result3)+" pln"
         subtotal.text = formattedResult3
+
+
+    }
+
+    private fun initView2() {
+        tvTenant = findViewById(R.id.username2_text)
+     //   tvTenantUid = findViewById(R.id.)
+        tvinvoice = findViewById(R.id.number_text)
+        tvStartDate = findViewById(R.id.start_text)
+        tvEndDate = findViewById(R.id.end_text)
+       // tvEmail = findViewById(R.id.)
+       // tvPhone = findViewById(R.id.)
+        tvlocation = findViewById(R.id.location2_text)
+        tvCost = findViewById(R.id.sum_text)
+    }
+
+    private fun setValuesToViews2() {
+        tvTenant.text = intent.getStringExtra("etTenant")
+     //   tvTenantUid.text = intent.getStringExtra("TenantUid")
+        tvinvoice.text = intent.getStringExtra("invoice")
+        tvStartDate.text = intent.getStringExtra("etStartDate")
+        tvEndDate.text = intent.getStringExtra("etEndDate")
+    //    tvEmail.text = intent.getStringExtra("etEmail")
+    //    tvPhone.text = intent.getStringExtra("etPhone")
+        tvlocation.text = intent.getStringExtra("location")
+        tvCost.text = intent.getStringExtra("etCost")
 
 
     }
