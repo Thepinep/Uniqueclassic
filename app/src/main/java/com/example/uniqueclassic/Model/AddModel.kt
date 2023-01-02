@@ -1,6 +1,7 @@
 package com.example.uniqueclassic.Model
 
 data class AddModel (
+    var etId:String? = null,
     var uid: String? = null,
     var etTitle: String? = null,
     var etVehicle: String? = null,

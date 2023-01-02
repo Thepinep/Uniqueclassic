@@ -9,10 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.uniqueclassic.Adapter.CustomizedGalleryAdapter
 import com.example.uniqueclassic.Adapter.loadImg
 import com.example.uniqueclassic.Model.Rent
+import com.example.uniqueclassic.Model.User
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,6 +24,8 @@ import java.util.concurrent.TimeUnit
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var dbRef: DatabaseReference
+    private lateinit var  user : User
+    var uid = FirebaseAuth.getInstance().currentUser!!.uid
 
     private  lateinit var tvTitle: TextView
     private  lateinit var tvLocation: TextView
@@ -138,6 +142,8 @@ class DetailActivity : AppCompatActivity() {
 
         setValuesToViews()
 
+        userdata()
+
 
 
 
@@ -151,6 +157,7 @@ class DetailActivity : AppCompatActivity() {
         val list_gallery =intent.getStringArrayExtra("etgalery")?.asList() ?: emptyList()
 
 
+        loadBig(storageReference, list_gallery[0])
 
         // initialize the adapter
         customGalleryAdapter = CustomizedGalleryAdapter(applicationContext,storageReference, list_gallery)
@@ -162,9 +169,36 @@ class DetailActivity : AppCompatActivity() {
         simpleGallery.setOnItemClickListener { parent, view, position, id ->
             // Whichever image is clicked, that is set in the  selectedImageView
             // position will indicate the location of image
-            selectedImageView.loadImg(this, storageReference ,list_gallery[position])
+            loadBig(storageReference ,list_gallery[position])
         }
     }
+
+    private fun userdata() {
+
+        dbRef = FirebaseDatabase.getInstance().getReference("User")
+
+        dbRef.child(uid).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                user = snapshot.getValue(User::class.java)!!
+
+                val textInputEditTextName = findViewById<TextInputEditText>(R.id.textInputEditBuyName)
+                textInputEditTextName.setText(user.etUsername)
+
+                val textInputEditTextPhone = findViewById<TextInputEditText>(R.id.textInputEditBuyPhone)
+                textInputEditTextPhone.setText(user.etPhone)
+
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+    }
+
+    private fun loadBig(storageReference: StorageReference, imageUrl: String) {
+        selectedImageView.loadImg(this, storageReference , imageUrl)
+    }
+
+
 
     private fun recalculate() {
         val date1String = startrent.text.toString()

@@ -125,7 +125,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="50"
                             android:fontFamily="@font/poppins_light"
-                            android:text="cost"
+                            android:text="Cost"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
                         <TextView

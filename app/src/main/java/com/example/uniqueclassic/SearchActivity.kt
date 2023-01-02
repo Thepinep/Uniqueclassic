@@ -3,13 +3,11 @@ package com.example.uniqueclassic
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uniqueclassic.Adapter.SearchAdapter
 import com.example.uniqueclassic.Model.AddModel
-import com.example.uniqueclassic.Model.WszystkieOgloszenia
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -35,12 +33,25 @@ class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListe
         Recyclerview.layoutManager = LinearLayoutManager(this)
         Recyclerview.setHasFixedSize(true)
 
+
         CarRecycler = arrayListOf<AddModel>()
-        getCarData(intent.getStringExtra("marka"))
+        getCarData(
+            intent.getStringExtra("marka"),
+            intent.getStringExtra("priceMin"),
+            intent.getStringExtra("priceMax"),
+            intent.getStringExtra("yearMin"),
+            intent.getStringExtra("yearMax")
+        )
 
 
     }
-    private fun getCarData(marka: String?) {
+    private fun getCarData(
+        marka: String?,
+        priceMin: String?,
+        priceMax: String?,
+        yearMin: String?,
+        yearMax: String?
+    ) {
         dbref = FirebaseDatabase.getInstance().getReference("Directory")
         val t: GenericTypeIndicator<Map<String, Map<String, AddModel>>> = object : GenericTypeIndicator<Map<String, Map<String, AddModel>>>() {}
         dbref.get().addOnCompleteListener {
@@ -52,7 +63,13 @@ class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListe
                     ?.map { it.values }
                     ?.flatten()
                     ?.filter { addModel ->
-                        marka?.let { addModel.etVehicle == marka } ?: true
+                        val markaPasuje = marka?.let { addModel.etVehicle == marka } ?: true
+                        val priceMinPasuje = priceMin?.let { (addModel.etPrice?.toInt() ?: 0) >= priceMin.toInt() } ?: true
+                        val priceMaxPasuje = priceMax?.let { (addModel.etPrice?.toInt() ?: 0) <= priceMax.toInt() } ?: true
+                        val yearMinPasuje = yearMin?.let { (addModel.etYear?.toInt() ?: 0) >= yearMin.toInt() } ?: true
+                        val yearMaxPasuje = yearMax?.let { (addModel.etYear?.toInt() ?: 0) <= yearMax.toInt() } ?: true
+
+                        markaPasuje && priceMinPasuje && priceMaxPasuje && yearMinPasuje && yearMaxPasuje
                     }
                 CarRecycler.addAll(wszystkieOgl?.toList() ?: emptyList())
 

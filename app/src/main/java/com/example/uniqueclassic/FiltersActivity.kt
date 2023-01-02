@@ -25,7 +25,15 @@ class FiltersActivity : AppCompatActivity() {
 
         binding.button.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
+            val priceMin = binding.priceMin.text.toString()
+            val priceMax = binding.priceMax.text.toString()
+            val yearMin = binding.yearMin.text.toString()
+            val yearMax = binding.yearMax.text.toString()
             intent.putExtra("marka", selected)
+            intent.putExtra("priceMin",priceMin.ifEmpty { null })
+            intent.putExtra("priceMax", priceMax.ifEmpty { null })
+            intent.putExtra("yearMin", yearMin.ifEmpty { null })
+            intent.putExtra("yearMax", yearMax.ifEmpty { null })
             startActivity(intent)
         }
     }

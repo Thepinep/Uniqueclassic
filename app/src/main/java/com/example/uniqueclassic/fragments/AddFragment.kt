@@ -21,12 +21,12 @@ import com.example.uniqueclassic.Adapter.SearchAdapter
 import com.example.uniqueclassic.Adapter.SearchAdapter.Companion.IMAGES_PATH
 import com.example.uniqueclassic.ImageAdapter
 import com.example.uniqueclassic.Model.AddModel
+import com.example.uniqueclassic.Model.User
 import com.example.uniqueclassic.R
 import com.example.uniqueclassic.databinding.FragmentAddBinding
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
@@ -40,6 +40,7 @@ class AddFragment : Fragment() {
     private lateinit var binding: FragmentAddBinding
     private lateinit var database : DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var  user : User
     var uid = FirebaseAuth.getInstance().currentUser!!.uid
 
 
@@ -131,6 +132,7 @@ class AddFragment : Fragment() {
             requireActivity().finish()
 
         }
+        getUserData()
 
 
 
@@ -178,6 +180,25 @@ class AddFragment : Fragment() {
         else -> throw IllegalStateException("chip null $checkedChipId")
 
     }
+
+    private fun getUserData() {
+
+
+        database = FirebaseDatabase.getInstance().getReference("User")
+
+        database.child(uid).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                user = snapshot.getValue(User::class.java)!!
+                binding.textInputEditName.setText(user.etUsername)
+                binding.textInputEditPhone.setText(user.etPhone)
+                binding.textInputEditLocation.setText(user.etLocation)
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
     private  fun savedata() {
 
         val etTitle = binding.textInputEditTitle.text.toString()
@@ -208,6 +229,7 @@ class AddFragment : Fragment() {
 
         val etId = database.push().key!!
         val directory = AddModel(
+            etId,
             uid,
             etTitle,
             etVehicle,
