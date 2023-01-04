@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_gray3"
+    tools:context=".EditAddActivity">
+
+<com.google.android.material.appbar.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/dark_gray3"
+    app:elevation="0dp">
+
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:theme="@style/Widget.AppCompat.Toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="34dp"
+                android:clickable="true"
+                android:id="@+id/ButtonClose"
+                android:layout_height="34dp"
+                android:layout_marginEnd="10dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_black" />
+
+            <TextView
+                android:id="@+id/textView_bolt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/white"
+                android:text="Edit advertisement "/>
+
+        </LinearLayout>
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+</com.google.android.material.appbar.AppBarLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_mid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="The more details, the better"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/textView_ad_titles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:text="Title of the ad"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutTitle2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:boxBackgroundColor="@color/dark_gray2"
+                app:hintTextColor="@color/white"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTitle2"
+                    android:layout_width="match_parent"
+                    android:maxLength="30"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:text="Description"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutDescription2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:boxBackgroundColor="@color/dark_gray2"
+                app:hintTextColor="@color/white"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditDescription2"
+                    android:layout_width="match_parent"
+                    android:inputType="textMultiLine"
+                    android:maxLength="900"
+                    android:gravity="top"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:lines="4"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="vertical"
+                    android:fontFamily="@font/poppins_medium" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:text="Price(per day)"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutPrice2"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    app:boxBackgroundColor="@color/dark_gray2"
+                    app:hintTextColor="@color/white"
+                    app:boxCornerRadiusTopEnd="5dp"
+
+                    app:boxCornerRadiusTopStart="5dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditPrice2"
+                        android:layout_width="match_parent"
+                        android:maxLength="12"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:inputType = "numberDecimal"
+                        android:lines="1"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/white"
+                    android:layout_marginEnd="20dp"
+                    android:text="pln" />
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/dark_gray2"
+                />
+
+            <TextView
+                android:id="@+id/textView_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:text="Phone"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutPhone2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:boxBackgroundColor="@color/dark_gray2"
+                app:hintTextColor="@color/white"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditPhone2"
+                    android:layout_width="match_parent"
+                    android:maxLength="9"
+                    android:paddingTop="16dp"
+                    android:inputType = "phone"
+                    android:paddingBottom="16dp"
+                    android:lines="1"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView_Location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:text="Location"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutLocation2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:boxBackgroundColor="@color/dark_gray2"
+                app:hintTextColor="@color/white"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditLocation2"
+                    android:layout_width="match_parent"
+                    android:maxLength="9"
+                    android:paddingTop="16dp"
+                    android:inputType = "text"
+                    android:paddingBottom="16dp"
+                    android:lines="1"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/ButtonAdd"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="text"
+                android:text="Edit your ad"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:backgroundTint="#E6B87C4C"
+                app:cornerRadius="30dp" />
+
+            <TextView
+                android:id="@+id/Box"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="30dp"
+                android:background="@color/dark_gray3" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

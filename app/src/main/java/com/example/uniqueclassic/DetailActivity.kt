@@ -1,15 +1,17 @@
 package com.example.uniqueclassic
 
-import android.app.DatePickerDialog
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.util.Pair
 import com.example.uniqueclassic.Adapter.CustomizedGalleryAdapter
 import com.example.uniqueclassic.Adapter.loadImg
 import com.example.uniqueclassic.Model.Rent
 import com.example.uniqueclassic.Model.User
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -87,7 +89,7 @@ class DetailActivity : AppCompatActivity() {
         buttonenddate = findViewById(R.id.ButtonEndDate)
         startrent = findViewById(R.id.startRent)
         endrent = findViewById(R.id.endRent)
-        etTenant =findViewById(R.id.user_text)
+        etTenant = findViewById(R.id.user_text)
         etStartDate = findViewById(R.id.startRent)
         title = findViewById(R.id.text_title)
         etEndDate = findViewById(R.id.endRent)
@@ -109,7 +111,7 @@ class DetailActivity : AppCompatActivity() {
 
         recalculate()
 
-        val myCalendar = Calendar.getInstance()
+        /*val myCalendar = Calendar.getInstance()
         val dataPicker = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
             myCalendar.set(Calendar.YEAR, year)
             myCalendar.set(Calendar.MONTH, month)
@@ -130,7 +132,28 @@ class DetailActivity : AppCompatActivity() {
         }
         buttonenddate.setOnClickListener {
             DatePickerDialog(this, dataPicker2,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+        }*/
+        buttonstartdate.setOnClickListener {
+            val datePickerRange = MaterialDatePicker.Builder.dateRangePicker()
+                .setTheme(R.style.ThemeOverlay_App_MaterialCalendar)
+                .setTitleText("Select Date")
+                .setSelection(
+                    Pair(
+                        MaterialDatePicker.todayInUtcMilliseconds(),
+                        MaterialDatePicker.todayInUtcMilliseconds()
+                    )
+            )
+            .build()
+            datePickerRange.show(supportFragmentManager, "date_picker")
+
+            datePickerRange.addOnPositiveButtonClickListener {
+                val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+                startrent.text ="${simpleDateFormat.format(it.first)}"
+                endrent.text ="${simpleDateFormat.format(it.second)}"
+            }
+            recalculate()
         }
+
 
 
         val buttonClick = findViewById<ImageView>(R.id.ButtonBack1)
@@ -262,10 +285,9 @@ class DetailActivity : AppCompatActivity() {
                 }
         }
 
-
     }
 
-    private fun updateLable(myCalendar: Calendar) {
+    /*private fun updateLable(myCalendar: Calendar) {
         val myFormat = "dd-MM-yyyy"
         val sdf = SimpleDateFormat(myFormat, Locale.UK)
         startrent.setText(sdf.format(myCalendar.time))
@@ -275,7 +297,7 @@ class DetailActivity : AppCompatActivity() {
         val myFormat = "dd-MM-yyyy"
         val sdf = SimpleDateFormat(myFormat, Locale.UK)
         endrent.setText(sdf.format(myCalendar.time))
-    }
+    }*/
     private fun initView() {
         tvTitle = findViewById(R.id.text_title)
         tvLocation = findViewById(R.id.text_Location)

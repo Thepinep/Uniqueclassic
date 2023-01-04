@@ -77,3 +77,11 @@ class AdsActivity : AppCompatActivity() {
 
     }
 }
+
+/*
+interface DeleteButtonListener{
+    fun onClick(item: AddModel)
+}
+interface EditButtonListener{
+    fun onClick(item: AddModel)
+}*/

@@ -28,24 +28,15 @@ import java.io.InputStream
 
 class FavoriteFragment : Fragment() {
 
-
-
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         var rootView = inflater.inflate(R.layout.fragment_favorite, container, false)
 
-
-
         return rootView
-
-
+    }
     }
 
-    }
 
 

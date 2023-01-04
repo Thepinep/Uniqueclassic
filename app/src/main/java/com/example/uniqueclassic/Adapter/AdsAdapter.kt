@@ -13,9 +13,11 @@ import com.example.uniqueclassic.R
 import com.google.firebase.storage.StorageReference
 
 
-class AdsAdapter (
+class AdsAdapter(
     private val CarRecycler2: ArrayList<AddModel>,
-    private val storageReference: StorageReference?
+    private val storageReference: StorageReference?,
+  /*  private val deleteButtonListener: DeleteButtonListener,
+    private val editButtonListener: EditButtonListener,*/
 ) : RecyclerView.Adapter<AdsAdapter.MyViewHolder2>() {
 
     companion object {
@@ -38,7 +40,12 @@ class AdsAdapter (
         holder.body.text = currentitem.etBody
         holder.zl.text = currentitem.etPrice
         holder.image.loadImg2(holder.itemView.context,storageReference, currentitem.etgalery[0])
-
+        /*holder.deleteRes.setOnClickListener {
+            deleteButtonListener.onClick(currentitem)
+        }
+        holder.editRes.setOnClickListener {
+            editButtonListener.onClick(currentitem)
+        }*/
     }
 
     override fun getItemCount(): Int {
@@ -56,6 +63,9 @@ class AdsAdapter (
         val body : TextView = itemView.findViewById(R.id.body_text)
         val zl : TextView = itemView.findViewById(R.id.zl_text)
         val image : ImageView = itemView.findViewById(R.id.image_car)
+//        val editRes: TextView = itemView.findViewById(R.id.edit_click)
+ //       val deleteRes: TextView = itemView.findViewById(R.id.delete_click)
+
 
 
     }
@@ -67,3 +77,4 @@ fun ImageView.loadImg2(context: Context, storageReference: StorageReference?, im
             .into(this)
     }
 }
+

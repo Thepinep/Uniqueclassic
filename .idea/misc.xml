@@ -36,9 +36,10 @@
         <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/drawable/transparent_background.xml" value="0.3155" />
         <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/layout/activity__filters.xml" value="0.26403508771929823" />
         <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/layout/activity_add.xml" value="0.3131578947368421" />
-        <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/layout/activity_ads.xml" value="0.3948374760994264" />
+        <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/layout/activity_ads.xml" value="0.30903282021492884" />
         <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/layout/activity_book_now_screen.xml" value="0.4631578947368421" />
         <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/layout/activity_detail.xml" value="0.36654275092936806" />
+        <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/layout/activity_edit_add.xml" value="0.3529021558872305" />
         <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
         <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/layout/activity_fff.xml" value="0.2994791666666667" />
         <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/layout/activity_forget_pass.xml" value="0.48731884057971014" />
@@ -74,6 +75,7 @@
         <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/layout/test.xml" value="0.2631578947368421" />
         <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/layout/user_adapter_item.xml" value="0.33" />
         <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/menu/bottom_nav_menu.xml" value="0.31354166666666666" />
+        <entry key="..\:/Users/konra/AndroidStudioProjects/Uniqueclassic/app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.2365" />
       </map>
     </option>
   </component>

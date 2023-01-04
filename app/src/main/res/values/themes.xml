@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Uniqueclassic"
-        parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Uniqueclassic" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="android:windowFullscreen">true</item>
         <item name="colorPrimary">@color/white</item>
@@ -33,6 +32,12 @@
 
     <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/chip_backgroud_color</item>
+    </style>
+
+    <style name="ThemeOverlay.App.MaterialCalendar" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+
+        <item name="colorOnPrimary">@color/dark_gray3</item>
+        <item name="colorPrimary">@color/button</item>
     </style>
 
 
