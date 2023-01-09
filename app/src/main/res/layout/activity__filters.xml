@@ -104,7 +104,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Price"
+                android:text="Price (Pln)"
                 android:padding="2dp"
                 android:textSize="15dp"
                 android:textColor="@color/white"

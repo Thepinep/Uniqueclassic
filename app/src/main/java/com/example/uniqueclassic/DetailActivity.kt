@@ -3,6 +3,7 @@ package com.example.uniqueclassic
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,8 @@ import com.example.uniqueclassic.Adapter.CustomizedGalleryAdapter
 import com.example.uniqueclassic.Adapter.loadImg
 import com.example.uniqueclassic.Model.Rent
 import com.example.uniqueclassic.Model.User
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -86,7 +89,6 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
 
         buttonstartdate = findViewById(R.id.ButtonStartDate)
-        buttonenddate = findViewById(R.id.ButtonEndDate)
         startrent = findViewById(R.id.startRent)
         endrent = findViewById(R.id.endRent)
         etTenant = findViewById(R.id.user_text)
@@ -111,29 +113,18 @@ class DetailActivity : AppCompatActivity() {
 
         recalculate()
 
-        /*val myCalendar = Calendar.getInstance()
-        val dataPicker = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-            myCalendar.set(Calendar.YEAR, year)
-            myCalendar.set(Calendar.MONTH, month)
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-            updateLable(myCalendar)
-            recalculate()
-        }
-        val dataPicker2 = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-            myCalendar.set(Calendar.YEAR, year)
-            myCalendar.set(Calendar.MONTH, month)
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-            updateLable2(myCalendar)
-            recalculate()
-        }
+        buttonstartdate.setOnClickListener {
 
-        buttonstartdate.setOnClickListener {
-            DatePickerDialog(this, dataPicker,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show()
-        }
-        buttonenddate.setOnClickListener {
-            DatePickerDialog(this, dataPicker2,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show()
-        }*/
-        buttonstartdate.setOnClickListener {
+            val istniejaceDaty: List<String> = intent.getStringArrayExtra("istniejaceDaty")?.asList()!!
+
+            istniejaceDaty.forEach {
+                Log.d("DateSerializer", "${DateSerializer().deserializuj(it)}")
+            }
+
+            val constraintsBuilder =
+                CalendarConstraints.Builder()
+                    .setValidator(DateValidatorPointBackward.now())
+
             val datePickerRange = MaterialDatePicker.Builder.dateRangePicker()
                 .setTheme(R.style.ThemeOverlay_App_MaterialCalendar)
                 .setTitleText("Select Date")
@@ -142,14 +133,17 @@ class DetailActivity : AppCompatActivity() {
                         MaterialDatePicker.todayInUtcMilliseconds(),
                         MaterialDatePicker.todayInUtcMilliseconds()
                     )
-            )
-            .build()
+                )
+                .setCalendarConstraints(constraintsBuilder.build())
+
+                .build()
             datePickerRange.show(supportFragmentManager, "date_picker")
 
             datePickerRange.addOnPositiveButtonClickListener {
                 val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
                 startrent.text ="${simpleDateFormat.format(it.first)}"
                 endrent.text ="${simpleDateFormat.format(it.second)}"
+                recalculate()
             }
             recalculate()
         }
@@ -198,9 +192,9 @@ class DetailActivity : AppCompatActivity() {
 
     private fun userdata() {
 
-        dbRef = FirebaseDatabase.getInstance().getReference("User")
+         val dbRef1 = FirebaseDatabase.getInstance().getReference("User")
 
-        dbRef.child(uid).addValueEventListener(object : ValueEventListener {
+        dbRef1.child(uid).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 user = snapshot.getValue(User::class.java)!!
@@ -254,7 +248,8 @@ class DetailActivity : AppCompatActivity() {
         val etPhone = intent.getStringExtra("etPhone")
         val uid = intent.getStringExtra("uid")
 
-
+        val ogloszenie = intent.getStringExtra("ogloszenie")!!
+        val istniejaceDaty: List<String> = intent.getStringArrayExtra("istniejaceDaty")?.asList()!!
 
 
         val invoice = dbRef.push().key!!
@@ -278,6 +273,7 @@ class DetailActivity : AppCompatActivity() {
             dbRef.child(invoice).setValue(reservations)
                 .addOnCompleteListener {
                     Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_SHORT).show()
+                    zajmijDate(istniejaceDaty, etStartDate, etEndDate, uid!!, ogloszenie)
                     val intent = Intent(this, BookNowScreenActivity::class.java)
                     startActivity(intent)
                 }.addOnFailureListener {
@@ -287,17 +283,22 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
-    /*private fun updateLable(myCalendar: Calendar) {
-        val myFormat = "dd-MM-yyyy"
-        val sdf = SimpleDateFormat(myFormat, Locale.UK)
-        startrent.setText(sdf.format(myCalendar.time))
-
+    private fun zajmijDate(istniejaceDaty: List<String>, etStartDate: String, etEndDate: String, user: String, ogloszenie: String) {
+        val directoryDbRef = FirebaseDatabase.getInstance().getReference("Directory")
+        directoryDbRef
+            .child(user)
+            .child(ogloszenie)
+            .updateChildren(
+                mapOf("etDates" to istniejaceDaty.plus("$etStartDate/$etEndDate"))
+            )
+            .addOnCompleteListener {
+                Toast.makeText(this, "zajmijDate sukces", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener{
+                Toast.makeText(this, "zajmijDate Error", Toast.LENGTH_SHORT).show()
+            }
     }
-    private fun updateLable2(myCalendar: Calendar) {
-        val myFormat = "dd-MM-yyyy"
-        val sdf = SimpleDateFormat(myFormat, Locale.UK)
-        endrent.setText(sdf.format(myCalendar.time))
-    }*/
+
     private fun initView() {
         tvTitle = findViewById(R.id.text_title)
         tvLocation = findViewById(R.id.text_Location)

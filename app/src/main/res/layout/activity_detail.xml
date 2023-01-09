@@ -860,37 +860,16 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/ButtonStartDate"
                         style="@style/Widget.Material3.Button.ElevatedButton"
-
                         android:layout_weight="2"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Start date"
+                        android:text="Select a date"
                         android:textColor="@color/white"
                         android:textSize="12dp"
                         app:backgroundTint="#E6B87C4C"
                         app:cornerRadius="30dp" />
 
-                    <Button
-                        android:layout_width="match_parent"
-                        android:background="#00232323"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"/>
-
-
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/ButtonEndDate"
-                            style="@style/Widget.Material3.Button.ElevatedButton"
-                            android:layout_weight="2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_medium"
-                            android:text="End date"
-                            android:textColor="@color/white"
-                            android:textSize="12dp"
-                            app:backgroundTint="#E6B87C4C"
-                            app:cornerRadius="30dp" />
                     </LinearLayout>
 
                     <LinearLayout

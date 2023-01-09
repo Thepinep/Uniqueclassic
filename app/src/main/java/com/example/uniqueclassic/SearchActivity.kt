@@ -3,7 +3,9 @@ package com.example.uniqueclassic
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uniqueclassic.Adapter.SearchAdapter
@@ -16,6 +18,7 @@ class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListe
 
     private lateinit var dbref : DatabaseReference
     private lateinit var Recyclerview : RecyclerView
+    private var mAdapter: SearchAdapter? = null
     private lateinit var CarRecycler : ArrayList<AddModel>
 
 
@@ -43,7 +46,10 @@ class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListe
             intent.getStringExtra("yearMax")
         )
 
-
+        (findViewById(R.id.searchButton) as ImageView).setOnClickListener {
+            val klucz: String = (findViewById(R.id.searchText) as EditText).text.toString()
+            mAdapter?.filter(klucz)
+        }
     }
     private fun getCarData(
         marka: String?,
@@ -75,7 +81,7 @@ class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListe
 
                 val storageReference = Firebase.storage.reference
 
-                val mAdapter = SearchAdapter(
+                mAdapter = SearchAdapter(
                     CarRecycler = CarRecycler,
                     storageReference = storageReference,
                     bookButtonListener = this@SearchActivity,
@@ -108,11 +114,17 @@ class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListe
         intent.putExtra("etgalery", (item.etgalery).toTypedArray())
         intent.putExtra("etPhone", item.etPhone)
         intent.putExtra("uid", item.uid)
+        intent.putExtra("ogloszenie", item.etId)
+        intent.putExtra("istniejaceDaty", (item.etDates).toTypedArray())
         startActivity(intent)
     }
 
     override fun onChanged(item: AddModel, state: Boolean) {
-        ///////
+       /* if (clickCount == 1) {
+            Toast.makeText(this, "pierwszy" , Toast.LENGTH_SHORT).show()
+        } else if (clickCount == 2) {
+            Toast.makeText(this, "drugi" , Toast.LENGTH_SHORT).show()
+        }*/
     }
 }
 

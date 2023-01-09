@@ -26,6 +26,7 @@ class SearchAdapter(
     companion object {
         const val IMAGES_PATH = "images/"
     }
+    private var odfiltrowane: List<AddModel> = CarRecycler
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate( R.layout.search_adapter_item, parent, false)
@@ -34,7 +35,7 @@ class SearchAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        val currentitem: AddModel = CarRecycler[position]
+        val currentitem: AddModel = odfiltrowane[position]
 
         holder.title.text = currentitem.etTitle
         holder.power.text = currentitem.etPower
@@ -54,7 +55,13 @@ class SearchAdapter(
     }
 
     override fun getItemCount(): Int {
-        return CarRecycler.size
+        return odfiltrowane.size
+    }
+
+    fun filter(klucz: String) {
+        if(klucz.isEmpty()) odfiltrowane = CarRecycler
+        else odfiltrowane = CarRecycler.filter { it.etTitle?.contains(klucz, ignoreCase = true) ?: false }
+        notifyDataSetChanged()
     }
 
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){

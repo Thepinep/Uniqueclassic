@@ -44,11 +44,11 @@
 
                 <ImageView
                     android:id="@+id/back1"
-                    android:clickable="true"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
+                    android:clickable="true"
                     android:src="@drawable/ic_tune" />
             </RelativeLayout>
 
@@ -61,27 +61,38 @@
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
 
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+
                     android:orientation="horizontal">
 
                     <EditText
+                        android:id="@+id/searchText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="6dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/gray_rounded_shape"
-                        android:drawableLeft="@drawable/ic_search_gray_24dp"
                         android:drawablePadding="8dp"
                         android:fontFamily="@font/poppins_light"
                         android:hint="e.g. E39 "
-                        android:padding="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
                         android:textColor="@color/white"
+                        android:paddingStart="34dp"
                         android:textColorHint="@color/white" />
-                </LinearLayout>
+                    <ImageView
+                        android:id="@+id/searchButton"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_search_gray_24dp"/>
+
+                </FrameLayout>
 
             </LinearLayout>
 

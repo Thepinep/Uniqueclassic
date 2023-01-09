@@ -23,7 +23,8 @@ data class AddModel (
     val etPhone: String? = null,
     val etUsername: String? = null,
     val etLocation: String? = null,
-    val etgalery : List<String> = emptyList()
+    val etgalery : List<String> = emptyList(),
+    val etDates : List<String> = emptyList(),
         )
 
 class WszystkieOgloszenia{
