@@ -13,7 +13,6 @@ import com.example.uniqueclassic.Adapter.loadImg
 import com.example.uniqueclassic.Model.Rent
 import com.example.uniqueclassic.Model.User
 import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -120,10 +119,10 @@ class DetailActivity : AppCompatActivity() {
             istniejaceDaty.forEach {
                 Log.d("DateSerializer", "${DateSerializer().deserializuj(it)}")
             }
-
+            // daty
             val constraintsBuilder =
                 CalendarConstraints.Builder()
-                    .setValidator(DateValidatorPointBackward.now())
+                    .setValidator(CarDate(istniejaceDaty))
 
             val datePickerRange = MaterialDatePicker.Builder.dateRangePicker()
                 .setTheme(R.style.ThemeOverlay_App_MaterialCalendar)

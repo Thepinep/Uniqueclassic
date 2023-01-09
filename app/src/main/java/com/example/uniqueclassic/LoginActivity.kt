@@ -17,7 +17,6 @@ class LoginActivity: AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        firebaseAuth = FirebaseAuth.getInstance()
         binding.SignUp2.setOnClickListener {
             val myIntent = Intent(this, RegisterActivity::class.java)
             startActivity(myIntent)
@@ -30,6 +29,7 @@ class LoginActivity: AppCompatActivity() {
             val email= binding.textInputEditEmail.text.toString()
             val pass = binding.textInputEditPassword.text.toString()
 
+        firebaseAuth = FirebaseAuth.getInstance()
             if(email.isNotEmpty() && pass.isNotEmpty()) {
                     firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
@@ -37,7 +37,6 @@ class LoginActivity: AppCompatActivity() {
                             if (Verification == true){
                                 val intent = Intent(this, MenuActivity::class.java)
                                 startActivity(intent)
-                         //       Toast.makeText(this, "Succeed ${firebaseAuth.currentUser?.uid}" , Toast.LENGTH_SHORT).show()
                                 Toast.makeText(this, "Succeed" , Toast.LENGTH_SHORT).show()
                             }else{
                                 Toast.makeText(this, "Please Verify your Email!" , Toast.LENGTH_SHORT).show()
