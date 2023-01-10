@@ -55,8 +55,9 @@ class EditProfileActivity : AppCompatActivity() {
     }
     private fun back() {
         binding.ButtonClose.setOnClickListener {
-            val myIntent = Intent(this, ProfileActivity::class.java)
-            startActivity(myIntent)
+            finish()
+            /*val myIntent = Intent(this, ProfileActivity::class.java)
+            startActivity(myIntent)*/
         }
     }
     private fun editButton() {

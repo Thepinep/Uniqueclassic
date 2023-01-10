@@ -24,15 +24,14 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        firebaseAuth = FirebaseAuth.getInstance()
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("User")
-
-
         binding.TextTermsConditions.setOnClickListener{
             val intent = Intent(this, TermsActivity::class.java)
             startActivity(intent)
         }
+
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("User")
 
         binding.ButtonCreateAnAccount.setOnClickListener {
             val username= binding.textInputEditUsername.text.toString()
@@ -66,7 +65,7 @@ class RegisterActivity : AppCompatActivity() {
                     }
 
                 }else {
-                    Toast.makeText(this, "Password is ont matching", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Password is not matching", Toast.LENGTH_SHORT).show()
                 }
             }else{
             Toast.makeText(this, "Fill in the blanks" , Toast.LENGTH_SHORT).show()
@@ -74,24 +73,3 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 }
-
-
-
-
-
-
-
-
-/*val button = findViewById<Button>(R.id.ButtonCreateAnAccount)
-val textterms = findViewById<TextView>(R.id.TextTermsConditions)
-
-
-
-button.setOnClickListener {
-    val intent = Intent(this, LoginActivity::class.java)
-    startActivity(intent)
-}
-textterms.setOnClickListener {
-    val myIntent = Intent(this@RegisterActivity, PdfActivity::class.java)
-    startActivity(myIntent)
-}*/

@@ -3,6 +3,7 @@ package com.example.uniqueclassic.reservations
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uniqueclassic.Adapter.RentalAdapter
@@ -29,8 +30,14 @@ class RentalActivity : AppCompatActivity() {
 
         userArrayList4 = arrayListOf<Rent>()
         getCarData()
+        back3()
     }
 
+    private fun back3() {
+        findViewById<View>(R.id.ButtonClose3).setOnClickListener {
+            finish()
+        }
+    }
     private fun getCarData() {
         dbref = FirebaseDatabase.getInstance().getReference("Reservations")
         val t: GenericTypeIndicator<Map<String, Map<String, Rent>>> = object : GenericTypeIndicator<Map<String, Map<String, Rent>>>() {}

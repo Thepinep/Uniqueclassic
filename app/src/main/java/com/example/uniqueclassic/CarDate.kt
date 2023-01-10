@@ -22,14 +22,14 @@ class CarDate( val istniejaceDaty: List<String>) :CalendarConstraints.DateValida
             Pair(cal,cal2)
         }
 
-        override fun isValid(date: Long): Boolean {
-            val  cal= Calendar.getInstance()
-            cal.timeInMillis = date
-            return Daty.isEmpty() || Daty.any {
-      //          date <it.first || date > it.second
-                cal.before(it.first ) || cal.after(it.second)
-
-            }
-
+    override fun isValid(date: Long): Boolean {
+        val  cal= Calendar.getInstance()
+        cal.timeInMillis = date
+        val hasThisDate = Daty.any {
+            cal.equals(it.first) ||
+                    cal.equals(it.second) ||
+                    cal.after(it.first ) && cal.before(it.second)
         }
+        return Daty.isEmpty() || hasThisDate.not()
+    }
     }

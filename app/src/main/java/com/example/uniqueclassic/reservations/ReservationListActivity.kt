@@ -3,10 +3,12 @@ package com.example.uniqueclassic.reservations
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uniqueclassic.Adapter.AdsAdapter
 import com.example.uniqueclassic.Adapter.ReservationAdapter
+import com.example.uniqueclassic.MenuActivity
 import com.example.uniqueclassic.Model.AddModel
 import com.example.uniqueclassic.Model.Rent
 import com.example.uniqueclassic.R
@@ -31,11 +33,28 @@ class ReservationListActivity : AppCompatActivity() {
         Recyclerview3.layoutManager = LinearLayoutManager(this)
         Recyclerview3.setHasFixedSize(true)
 
+
         userArrayList3 = arrayListOf<Rent>()
         getCarData()
+        back()
 
 
     }
+
+    override fun onBackPressed() {
+        val myIntent = Intent(this, MenuActivity::class.java)
+        myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(myIntent)
+
+    }
+
+    private fun back() {
+        findViewById<View>(R.id.ButtonClose).setOnClickListener {
+            val myIntent = Intent(this, MenuActivity::class.java)
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(myIntent)
+        }
+        }
 
     private fun getCarData() {
         dbref = FirebaseDatabase.getInstance().getReference("Reservations").child(uid)
