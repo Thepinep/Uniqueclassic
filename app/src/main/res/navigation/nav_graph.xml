@@ -9,31 +9,27 @@
         android:id="@+id/homeFragment"
         android:name="com.example.uniqueclassic.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home"/>
-      <!-- &lt;!&ndash; <action android:id="@+id/to_add"
-        app:destination="@id/addFragment" />&ndash;&gt;
-    </fragment>-->
+        tools:layout="@layout/fragment_home">
+    <action android:id="@+id/to_profile"
+        app:destination="@id/profilFragment" />
+</fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.uniqueclassic.fragments.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
-<!--    <action android:id="@+id/to_add"-->
-<!--        app:destination="@id/addFragment" />-->
-<!--    </fragment>-->
+        tools:layout="@layout/fragment_favorite" >
+        <action android:id="@+id/to_profile"
+            app:destination="@id/profilFragment" />
+</fragment>
     <fragment
         android:id="@+id/addFragment"
         android:name="com.example.uniqueclassic.fragments.AddFragment"
         android:label="fragment_add"
-        tools:layout="@layout/fragment_add" />
-      <!--  <action android:id="@+id/back_home"
-            app:popUpTo="@id/homeFragment" />
-        <action android:id="@+id/back_favorite"
-            app:popUpTo="@id/favoriteFragment" />
-        <action android:id="@+id/back_profil"
-            app:popUpTo="@id/profilFragment" />
+        tools:layout="@layout/fragment_add" >
+    <action android:id="@+id/to_profile"
+        app:destination="@id/profilFragment" />
+</fragment>
 
-    </fragment>-->
     <fragment
         android:id="@+id/profilFragment"
         android:name="com.example.uniqueclassic.fragments.ProfilFragment"

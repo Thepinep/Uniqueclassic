@@ -10,16 +10,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uniqueclassic.Adapter.SearchAdapter
 import com.example.uniqueclassic.Model.AddModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
 class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListener {
 
-    private lateinit var dbref : DatabaseReference
-    private lateinit var Recyclerview : RecyclerView
+    private lateinit var dbref: DatabaseReference
+    private lateinit var Recyclerview: RecyclerView
     private var mAdapter: SearchAdapter? = null
-    private lateinit var CarRecycler : ArrayList<AddModel>
+    private lateinit var CarRecycler: ArrayList<AddModel>
+    var uid = FirebaseAuth.getInstance().currentUser!!.uid
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +53,7 @@ class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListe
             mAdapter?.filter(klucz)
         }
     }
+
     private fun getCarData(
         marka: String?,
         priceMin: String?,
@@ -59,9 +62,10 @@ class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListe
         yearMax: String?
     ) {
         dbref = FirebaseDatabase.getInstance().getReference("Directory")
-        val t: GenericTypeIndicator<Map<String, Map<String, AddModel>>> = object : GenericTypeIndicator<Map<String, Map<String, AddModel>>>() {}
+        val t: GenericTypeIndicator<Map<String, Map<String, AddModel>>> =
+            object : GenericTypeIndicator<Map<String, Map<String, AddModel>>>() {}
         dbref.get().addOnCompleteListener {
-            if(it.isSuccessful){
+            if (it.isSuccessful) {
                 val snap: DataSnapshot = it.result
                 val zmapowane: Map<String, Map<String, AddModel>>? = snap.getValue(t)
                 val wszystkieOgl: List<AddModel>? = zmapowane
@@ -70,10 +74,18 @@ class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListe
                     ?.flatten()
                     ?.filter { addModel ->
                         val markaPasuje = marka?.let { addModel.etVehicle == marka } ?: true
-                        val priceMinPasuje = priceMin?.let { (addModel.etPrice?.toInt() ?: 0) >= priceMin.toInt() } ?: true
-                        val priceMaxPasuje = priceMax?.let { (addModel.etPrice?.toInt() ?: 0) <= priceMax.toInt() } ?: true
-                        val yearMinPasuje = yearMin?.let { (addModel.etYear?.toInt() ?: 0) >= yearMin.toInt() } ?: true
-                        val yearMaxPasuje = yearMax?.let { (addModel.etYear?.toInt() ?: 0) <= yearMax.toInt() } ?: true
+                        val priceMinPasuje =
+                            priceMin?.let { (addModel.etPrice?.toInt() ?: 0) >= priceMin.toInt() }
+                                ?: true
+                        val priceMaxPasuje =
+                            priceMax?.let { (addModel.etPrice?.toInt() ?: 0) <= priceMax.toInt() }
+                                ?: true
+                        val yearMinPasuje =
+                            yearMin?.let { (addModel.etYear?.toInt() ?: 0) >= yearMin.toInt() }
+                                ?: true
+                        val yearMaxPasuje =
+                            yearMax?.let { (addModel.etYear?.toInt() ?: 0) <= yearMax.toInt() }
+                                ?: true
 
                         markaPasuje && priceMinPasuje && priceMaxPasuje && yearMinPasuje && yearMaxPasuje
                     }
@@ -119,14 +131,43 @@ class SearchActivity : AppCompatActivity(), BookButtonListener, HeartButtonListe
         startActivity(intent)
     }
 
-    override fun onChanged(item: AddModel, state: Boolean) {
-       /* if (clickCount == 1) {
-            Toast.makeText(this, "pierwszy" , Toast.LENGTH_SHORT).show()
-        } else if (clickCount == 2) {
-            Toast.makeText(this, "drugi" , Toast.LENGTH_SHORT).show()
-        }*/
+
+        override fun onChanged(item: AddModel, state: Boolean) {
+            if (state) {
+                savedata(item)
+            } else {
+                deletedata(item)
+            }
+        }
+
+        private fun deletedata(item: AddModel) {
+            Toast.makeText(
+                this,
+                "You have successfully deletedata",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+        private fun savedata(item: AddModel) {
+            val fauvorites = FirebaseDatabase.getInstance().getReference("Favourites").child(uid)
+            fauvorites.setValue(item)
+                .addOnCompleteListener {
+                    Toast.makeText(
+                        this,
+                        "You have successfully savedata",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(
+                        this,
+                        "savedata failed",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+        }
     }
-}
+
 
 interface BookButtonListener{
     fun onClick(item: AddModel)

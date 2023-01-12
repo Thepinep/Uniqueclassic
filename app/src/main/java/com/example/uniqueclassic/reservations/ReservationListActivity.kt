@@ -43,16 +43,20 @@ class ReservationListActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         val myIntent = Intent(this, MenuActivity::class.java)
-        myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        myIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         startActivity(myIntent)
+        /*myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(myIntent)*/
 
     }
 
     private fun back() {
         findViewById<View>(R.id.ButtonClose).setOnClickListener {
             val myIntent = Intent(this, MenuActivity::class.java)
-            myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            myIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(myIntent)
+            /*myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(myIntent)*/
         }
         }
 

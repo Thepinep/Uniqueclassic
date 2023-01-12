@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="@color/dark_gray3"
     tools:context=".fragments.FavoriteFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        tools:listitem="@layout/search_adapter_item"
-        android:id="@+id/CarRecycler"
+        tools:listitem="@layout/favorite_adapter_item"
+        android:id="@+id/Carfavorite7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp" />

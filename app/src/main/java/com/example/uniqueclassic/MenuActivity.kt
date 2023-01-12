@@ -26,6 +26,7 @@ class MenuActivity : AppCompatActivity() {
         }
 
 
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.mainContainer) as NavHostFragment
         navController = navHostFragment.navController
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
@@ -37,6 +38,14 @@ class MenuActivity : AppCompatActivity() {
 
 
 
+
+    }
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if(
+        navController.currentDestination?.id!=R.id.profilFragment
+        )
+        navController.navigate(R.id.to_profile)
 
     }
 }
